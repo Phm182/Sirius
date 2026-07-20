@@ -2,6 +2,7 @@
 .env
 .env.*
 !.env.example
+inc/funciones/bd.php
 
 # OS
 Thumbs.db
