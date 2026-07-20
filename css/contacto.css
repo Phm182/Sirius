@@ -1,94 +1,254 @@
+.wrapper {
+  margin: 40px auto 0;
+  width: 90%;
+  max-width: 920px;
+  display: flex;
+  justify-content: center;
+}
 
-  .wrapper {
-    margin: 100px auto 0;
-    width: 70%;
-    max-width: 1000px;
-    display: flex;
-    justify-content: center;
+form {
+  width: 100%;
+  margin: 0;
+}
+
+form * {
+  font-size: 18px;
+  letter-spacing: 0.04em;
+  font-weight: 400;
+  text-transform: none;
+  text-decoration: none;
+}
+
+.form_contacto .field,
+.form_contacto .button,
+.form_contacto select {
+  cursor: pointer;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 700px) {
+  .field-row {
+    grid-template-columns: 1fr;
   }
-  
-  form {
-    width: 100%;
-    margin: 0;
-  }
-  
-  form * {
-    font-size: 20px;
-    letter-spacing: 0.075em;
-    font-weight: 300;
-    text-transform: uppercase;
-    cursor: pointer;
-    text-decoration: none;
-    color: white;
-  }
-  
-  form .field {
-    width: 100%;
-    position: relative;
-    margin-bottom: 15px;
-  }
-  
-  form .field label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: linear-gradient(90deg, #b13e3e, #332056);
-    width: 100%;
-    height: 64px;
-    transition: width 333ms ease-in-out;
-    text-align: center;
-    padding: 18px 0;
-  }
-  
-  form .field input[type="text"],
-  form .field textarea,
-  form .field input[type="tel"],
-  form .field input[type="radio"] {
-    border: none;
-    width: 100%;
-    height: 64px;
-    margin: 0;
-    padding-left: 19.5%;
-    color: #313a3d;
-  }
-  
-  form #msg {
-    height: 64px;
-    resize: none;
-    transition: all 333ms ease-in-out;
-    padding-top: 18px;
-  }
-  form textarea:focus#msg,
-  form textarea:not(:placeholder-shown)#msg {
-    height: 166px;
-  }
-  form input[type="text"]:focus + label,
-  form input[type="text"]:not(:placeholder-shown) + label,
-  form textarea:focus + label,
-  form textarea:not(:placeholder-shown) + label,
-  form .field:hover label,
-  form .field input[type="tel"]:focus + label,
-  form .field input[type="tel"]:not(:placeholder-shown) + label {
-    width: 18%;
-  }
-  form input[type="submit"] {
-    background: linear-gradient(90deg, #b13e3e, #332056);
-    -webkit-appearance: none;
-    border: none;
-    position: relative;
-    padding: 13px 50px;
-    transition: all 0.3s ease-in-out;
-    margin-bottom: 2rem;
-  }
-  form input[type="submit"]:hover,
-  form input[type="submit"]:focus {
-    background: #372056;  
-  }
-  .radio div label,
-  .radio div p {
-      color: black;
-  }
-  .radio_options div{
-      margin-bottom: .5rem;
-  }
-  
+}
+
+form .field {
+  width: 100%;
+  position: relative;
+  margin-bottom: 15px;
+}
+
+form .field label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(90deg, #b13e3e, #09134e);
+  width: 100%;
+  height: 64px;
+  transition: width 333ms ease-in-out;
+  text-align: center;
+  padding: 18px 0;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 15px;
+  pointer-events: none;
+}
+
+form .field label.label-static {
+  width: 28%;
+  font-size: 13px;
+  padding: 22px 8px;
+}
+
+form .field input[type="text"],
+form .field input[type="email"],
+form .field input[type="tel"],
+form .field textarea {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  width: 100%;
+  height: 64px;
+  margin: 0;
+  padding-left: 30%;
+  color: #f4f6fa;
+  background: rgba(13, 21, 51, 0.95);
+  border-radius: 4px;
+  outline: none;
+}
+
+form .field input::placeholder,
+form .field textarea::placeholder {
+  color: rgba(244, 246, 250, 0.45);
+}
+
+form .field textarea {
+  height: 64px;
+  resize: vertical;
+  min-height: 64px;
+  padding-top: 18px;
+  transition: height 250ms ease;
+}
+
+form .field textarea:focus,
+form .field textarea:not(:placeholder-shown) {
+  height: 140px;
+}
+
+/* Selects: label arriba + lista a ancho completo (evita el despliegue raro) */
+form .field.field-select {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+form .field.field-select label {
+  position: static;
+  width: 100%;
+  height: auto;
+  padding: 12px 16px;
+  font-size: 14px;
+  border-radius: 6px 6px 0 0;
+  pointer-events: auto;
+}
+
+form .field.field-select select {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 56px;
+  margin: 0;
+  padding: 0 2.75rem 0 1rem;
+  border: 1px solid #1c2a55;
+  border-top: 0;
+  border-radius: 0 0 6px 6px;
+  outline: none;
+  color: #f4f6fa;
+  background-color: #0d1533;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #e8ecf8 50%),
+    linear-gradient(135deg, #e8ecf8 50%, transparent 50%);
+  background-position: calc(100% - 18px) 24px, calc(100% - 12px) 24px;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+form .field.field-select select:focus {
+  border-color: #b13e3e;
+  box-shadow: 0 0 0 2px rgba(177, 62, 62, 0.25);
+}
+
+form .field.field-select select option {
+  background-color: #0d1533;
+  color: #f4f6fa;
+  padding: 0.6rem;
+}
+
+form .field input:focus + label,
+form .field input:not(:placeholder-shown) + label,
+form .field textarea:focus + label,
+form .field textarea:not(:placeholder-shown) + label,
+form .field:hover label:not(.label-static) {
+  width: 26%;
+}
+
+form .field.field-select:hover label {
+  width: 100%;
+}
+
+form input[type="submit"],
+form .button {
+  background: linear-gradient(90deg, #b13e3e, #09134e);
+  -webkit-appearance: none;
+  border: none;
+  position: relative;
+  padding: 16px 48px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  margin: 1rem 0 2rem;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  width: 100%;
+  border-radius: 4px;
+}
+
+form input[type="submit"]:hover,
+form input[type="submit"]:focus,
+form .button:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+.radio {
+  margin: 1rem 0 1.5rem;
+  text-align: center;
+}
+
+.radio div label,
+.radio div p {
+  color: #f4f6fa;
+  cursor: pointer;
+}
+
+.radio_options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  margin-top: 0.75rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.radio_options input[type="radio"] {
+  margin-right: 0.35rem;
+  accent-color: #b91515;
+}
+
+.form-nota {
+  color: rgba(244, 246, 250, 0.78);
+  font-size: 0.95rem;
+  margin: 0.5rem 0 1rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.form-error {
+  background: rgba(157, 28, 28, 0.35);
+  color: #ffd6d6;
+  border: 1px solid rgba(245, 194, 194, 0.45);
+  padding: 0.85rem 1rem;
+  border-radius: 6px;
+  margin: 0 auto 1.25rem;
+  max-width: 920px;
+  width: 90%;
+  text-align: center;
+}
+
+/* Evita que el autofill del navegador pinte blanco */
+form .field input:-webkit-autofill,
+form .field input:-webkit-autofill:hover,
+form .field input:-webkit-autofill:focus,
+form .field textarea:-webkit-autofill {
+  -webkit-text-fill-color: #f4f6fa;
+  caret-color: #f4f6fa;
+  transition: background-color 9999s ease-in-out 0s;
+  box-shadow: 0 0 0 1000px #0d1533 inset;
+}
+
+.form-inscripcion-wrap {
+  margin-top: 0;
+}
+
+.contacto-lead {
+  max-width: 34rem;
+  margin: 0.75rem auto 0;
+  color: rgba(244, 246, 250, 0.82);
+  font-size: 1rem;
+  line-height: 1.6;
+}

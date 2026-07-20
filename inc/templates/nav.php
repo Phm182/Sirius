@@ -9,7 +9,7 @@
                                             <li><a href="cursos.php">Cursos</a></li>
                                             <li><a href="inscripcion.php">Inscripción</a></li>
                                             <li><a href="index.php#mapa">Sede</a></li>
-                                            <li><a href="galeria.php">Galería de Imagenes</a></li>
+                                            <li><a href="galeria.php">Galería</a></li>
                                             <!-- <li><a href="#">Noticias</a></li> -->
                                             <li><a href="contacto.php">Contacto</a></li>
                         </ul>

@@ -1,11 +1,10 @@
-<?php //crea la variable para tomar el contacto desde la base de datos
+<?php // Último contacto (página de confirmación)
 
-      try {
-         require_once('inc/funciones/bd.php');
-         $sql = " SELECT id, nombre, celular, email, consulta, metodo FROM contacto ";
-         $sql .= " ORDER BY id desc "; // Ordenar, se puede elegir cualquier elemento
-         $resultado = $conn -> query($sql);
-    } catch (\Exception $e) {
-         echo $e -> getMessage();
-    }
-    ?>
+try {
+    require_once 'inc/funciones/bd.php';
+    $sql = 'SELECT id, nombre, celular, email, consulta, metodo FROM contacto ORDER BY id DESC LIMIT 1';
+    $resultado = $conn->query($sql);
+} catch (Exception $e) {
+    error_log($e->getMessage());
+    $resultado = false;
+}

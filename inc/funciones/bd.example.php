@@ -1,14 +1,20 @@
 <?php
+$host = 'localhost';
+$user = 'root';
+$password = '';
+$dbname = 'sirius';
+$port = '3306';
 
-// credenciales de la base de datos  - Mamp
+$conn = new mysqli($host, $user, $password, $dbname, $port);
 
-    $conn = new mysqli('localhost', 'root', 'root', 'sirius', '3306');
+if ($conn->connect_error) {
+    die('Error de conexión: ' . $conn->connect_error);
+}
 
-    if($conn->connect_error) {
-        echo $error -> $conn->connect_error;
-    }
+if (!$conn->set_charset('utf8mb4')) {
+    error_log('Error seteando charset utf8mb4: ' . $conn->error);
+}
 
-
-//echo $conn->ping();
-
-?>
+$conn->query("SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci");
+$conn->query("SET collation_connection = 'utf8mb4_unicode_ci'");
+@$conn->query("SET time_zone = '-03:00'");

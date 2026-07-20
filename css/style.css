@@ -8,6 +8,12 @@ html {
 body {
     height: 100%;
 }
+/* Solo páginas internas (no afecta index) */
+body:has(.page-surface),
+body:has(.pagina-cursos) {
+    background-color: #111;
+    overflow-x: hidden;
+}
 
 :root {
   --blue: rgba(9, 19, 78, 1);
@@ -60,13 +66,96 @@ hr {
   }
   .contenedor {
     position: relative;
-    height: 95vh;
+    height: 100vh;
+    min-height: 100vh;
     overflow: hidden;
   }
 
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: transparent;
+    transition: background-color .35s ease, box-shadow .35s ease, backdrop-filter .35s ease;
+  }
+  .site-header.is-scrolled {
+    background: rgba(0, 0, 0, 0.46);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+  }
+  .site-header .header a img {
+    margin-top: 0;
+    height: 88px;
+  }
+  .site-header.is-scrolled .header a img {
+    height: 72px;
+  }
+  .page-offset {
+    padding-top: 96px;
+  }
+  .page-surface {
+    position: relative;
+    width: 100%;
+    max-width: none;
+    min-height: calc(100vh - 96px);
+    margin: 0;
+    margin-bottom: 0;
+    padding-bottom: 3rem;
+    color: #f4f6fa;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.72) 0%,
+        rgba(0, 0, 0, 0.62) 45%,
+        rgba(0, 0, 0, 0.78) 100%
+      ),
+      url(../img/velas_para_crucero.jpg) center / cover no-repeat fixed;
+    box-sizing: border-box;
+  }
+  .page-surface h2,
+  .page-surface h3,
+  .page-surface h5 {
+    color: #fff;
+  }
+  .page-surface .contacto-lead,
+  .page-surface .galeria-lead,
+  .page-surface .nosotros,
+  .page-surface .texto_historia p {
+    color: rgba(244, 246, 250, 0.82);
+  }
+  .page-surface .nuestra-historia,
+  .page-surface .nuestra-historia2 {
+    color: #fff;
+    border-color: #fff;
+  }
+  .page-surface .nuestra-historia:hover,
+  .page-surface .nuestra-historia2:hover {
+    background: var(--red);
+    border-color: var(--red);
+    color: #fff;
+  }
+  .page-surface .section_galeria .wrapper,
+  .page-surface .inscripcion-form-block .wrapper {
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 16px;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+    padding: 2rem 1.5rem 1rem;
+    color: #f4f6fa;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .page-surface hr {
+    border-color: rgba(185, 21, 21, 0.85);
+    opacity: 0.9;
+  }
   .header {
     width: 100%;
-    height: 10vh;
+    min-height: 88px;
+    height: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;    
@@ -115,7 +204,7 @@ hr {
     color: white;
     position: relative;
     margin-left: 310px;
-    margin-top: 30vh;
+    margin-top: 28vh;
     font-size: 3.5em;
     letter-spacing: .1em;
     transition: all 300ms;
@@ -130,6 +219,25 @@ hr {
     font-size: 1.3em;
     font-weight: bold;
     transition: all 300ms;
+}
+.hero-cta {
+  display: inline-block;
+  margin-left: 310px;
+  margin-top: 1.75rem;
+  padding: 12px 28px;
+  border: 2px solid #fff;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: background-color .3s ease, color .3s ease, transform .3s ease;
+}
+.hero-cta:hover {
+  background: var(--red);
+  border-color: var(--red);
+  transform: translateY(-2px);
 }
 .tit-position p,
 .tit-position h1 {
@@ -147,15 +255,18 @@ hr {
     margin-right: 40px;
   }
   .sirius p,
-  .sirius h1{
+  .sirius h1,
+  .hero-cta {
     margin-left: 100px;
   }
 }
 @media (max-width: 770px) {
+  .site-header {
+    background-color: rgba(0, 0, 0, .55);
+  }
   .header {
-    background-color: rgba(0, 0, 0, .6);
     position: relative;
-    height: 15vh;
+    min-height: 72px;
   }
   .menu-mobile {
     display: block;
@@ -163,19 +274,27 @@ hr {
   .menu-pc {
     display: none;
   }
+  .hero-cta {
+    margin-left: 0;
+  }
 }
 @media (max-width: 480px){
   .logo {
     margin-left: -60px;
   }
-  .header a img{
-    height: 100px;
+  .header a img,
+  .site-header .header a img,
+  .site-header.is-scrolled .header a img {
+    height: 78px;
     top: -10px;
+    margin-top: 0;
   }
   .sirius h1,
-  .sirius p {
+  .sirius p,
+  .hero-cta {
     text-align: center;
     margin-left: 0;
+    display: block;
   }
   .tit-position p,
   .tit-position h1 {
@@ -285,25 +404,76 @@ span {
 }
 
 /* Cursos */
-.cursos {
-  height: 100%;
+.section-cursos {
   width: 100%;
-  background-image: url(../img/thumb_14365_default_large.jpeg);
+  max-width: 100%;
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+.cursos {
+  min-height: 100%;
+  width: 100%;
+  background-image: url(../img/velas_para_crucero.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
+  background-attachment: fixed;
   position: relative;
-  content: '';
 }
 .cursos::before{
   content:'';
-	position: absolute;
+  position: absolute;
   top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	background-color: rgba(0,0,0,0.6);
-
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.62);
+  pointer-events: none;
+}
+/* Páginas de cursos: parallax a todo el ancho del viewport */
+.section-cursos:has(.pagina-cursos) {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  background: transparent;
+}
+.section-cursos:has(.pagina-cursos)::before,
+.section-cursos:has(.pagina-cursos)::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+}
+.section-cursos:has(.pagina-cursos)::before {
+  background: url(../img/velas_para_crucero.jpg) center / cover no-repeat;
+}
+.section-cursos:has(.pagina-cursos)::after {
+  background: rgba(0, 0, 0, 0.62);
+}
+.section-cursos:has(.pagina-cursos) > .cursos {
+  position: relative;
+  z-index: 1;
+  background: none;
+  background-image: none;
+  background-attachment: scroll;
+}
+.section-cursos:has(.pagina-cursos) > .cursos::before {
+  display: none;
+}
+.cursos.pagina-cursos {
+  min-height: calc(100vh - 96px);
+  padding-bottom: 3rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+.pagina-cursos-footer {
+  position: relative;
+  z-index: 1;
 }
 .cursos h2{
   text-align: center;
@@ -314,6 +484,26 @@ span {
   letter-spacing: 10px;
   position: relative;
   margin-bottom: 60px;
+}
+.cursos-titulo {
+  text-align: center;
+  position: relative;
+  padding-top: 4.5rem;
+  margin-bottom: 2rem;
+}
+.cursos-titulo .nombre {
+  margin: 0;
+  padding-top: 0;
+}
+.cursos-titulo .nombre span {
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  color: var(--red);
+}
+.cursos-titulo h2 {
+  padding-top: 0.35rem;
+  margin-top: 0;
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.2em;
 }
 .curso {
   position: relative;
@@ -392,22 +582,102 @@ span {
   }
 }
 /* Maps */
-
+.mapa-section {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(260px, 380px) 1fr;
+  min-height: 62vh;
+  background: #07102f;
+}
+.mapa-intro {
+  padding: 3.5rem 2.5rem;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 2;
+}
+.mapa-intro h3 {
+  margin: 0.35rem 0 1rem;
+  font-size: 2rem;
+  letter-spacing: 0.04em;
+}
+.mapa-intro p {
+  line-height: 1.7;
+  margin-bottom: 1.75rem;
+  color: rgba(255, 255, 255, 0.88);
+}
+.mapa-intro .nuestra-historia {
+  align-self: flex-start;
+  color: #fff;
+  border-color: #fff;
+}
+.mapa-intro .nuestra-historia:hover {
+  background: var(--red);
+  border-color: var(--red);
+}
 .mapa {
-  height: 60vh;
+  height: 100%;
+  min-height: 62vh;
   width: 100%;
   z-index: 1;
+}
+.sirius-marker {
+  background: transparent;
+  border: 0;
+}
+.sirius-pin {
+  position: relative;
+  width: 28px;
+  height: 28px;
+}
+.sirius-pin__dot {
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  background: var(--red);
+  border: 2px solid #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+  z-index: 2;
+}
+.sirius-pin__pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(185, 21, 21, 0.35);
+  animation: pin-pulse 1.8s ease-out infinite;
+}
+@keyframes pin-pulse {
+  0% { transform: scale(0.55); opacity: 0.9; }
+  100% { transform: scale(1.7); opacity: 0; }
+}
+.sirius-popup .leaflet-popup-content-wrapper {
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+@media (max-width: 900px) {
+  .mapa-section {
+    grid-template-columns: 1fr;
+  }
+  .mapa-intro {
+    text-align: center;
+    padding: 2.5rem 1.5rem 1.5rem;
+  }
+  .mapa-intro .nuestra-historia {
+    align-self: center;
+  }
 }
 
 /* Footer */ 
 .footer {
   width: 100%;
-  height: 100%;
+  height: auto;
   background-color:var(--blue);
   display: flex;
   justify-content: space-between;
   flex-direction: column;
   padding-bottom: 0;
+  margin-top: 0;
 }
 .contenedor-footer{
   padding: 2rem 8rem;
@@ -512,7 +782,7 @@ span {
 
 /* Cursos */
 .pagina-cursos {
-  padding-top: 10px;
+  padding-top: 1.5rem;
 }
 .section-cursos-header{
   background-color: rgba(0, 0, 0, .8);
@@ -521,10 +791,15 @@ span {
 }
 .pagina-cursos-footer {
   position: relative;
+  z-index: 1;
 }
 @media (max-width: 770px){
   .pagina-cursos {
-    padding-top: 7rem;
+    padding-top: 1rem;
+  }
+  .cursos h2 {
+    padding-top: 1.5rem;
+    letter-spacing: 4px;
   }
 }
 
@@ -557,59 +832,263 @@ span {
 }
 
 /* Galeria */
-
-.section_galeria {
-  padding-top: 7rem;
-  text-align: center;
-  font-size: 1.5em;
-}
-.section_galeria div {
-  padding-left: 0;
-}
-.section_galeria div:last-child{
-  margin-bottom: 1rem;
-}
-.section_galeria {
-  width: 70%;
+.galeria-page {
+  width: min(1400px, 94%);
   margin: 0 auto;
 }
-.caja-galeria {
-  display: flex;
-  flex-wrap: wrap;
-}
-.caja-galeria div {
-  padding: 10px;
-}
-.caja-galeria div img{
-  height: 200px;
-  width: 400px;
-}
-@media (max-width: 770px) {
-  .section_galeria {
-    width: 100%;
-    align-items: center;
-  }
-  .section_galeria div {
-    margin: 0 auto;
-  }
-}
-/* contacto */
-.exitoso {
+.galeria-hero {
   text-align: center;
-  padding: 11rem 0;
+  margin-bottom: 2rem;
 }
-.exitoso div h3{
-  margin-bottom: 3rem;
+.galeria-hero h2 {
+  margin: 0.25rem 0 0.75rem;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.galeria-lead {
+  max-width: 38rem;
+  margin: 0 auto;
+  color: rgba(244, 246, 250, 0.82);
+  line-height: 1.6;
+}
+.galeria-mosaic {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.galeria-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  display: block;
+  aspect-ratio: 4 / 3;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .55s ease, transform .55s ease;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+}
+.galeria-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.galeria-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .55s ease;
+}
+.galeria-item__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.78) 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 1rem;
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+.galeria-item__label {
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+.galeria-item:hover img {
+  transform: scale(1.06);
+}
+.galeria-item:hover .galeria-item__overlay {
+  opacity: 1;
+}
+.galeria-cta {
+  text-align: center;
+  margin-top: 2.5rem;
+  padding: 2rem 1rem;
+  color: #fff;
+}
+.galeria-cta p {
+  margin-bottom: 1.25rem;
+  font-size: 1.15rem;
+}
+.galeria-cta .nuestra-historia {
+  color: #fff;
+  border-color: #fff;
+}
+.galeria-cta .nuestra-historia:hover {
+  background: var(--red);
+  border-color: var(--red);
 }
 
- /* Inscripcion */
- .mercado-pago {
-   width: 0;
-   margin: 0 !important;
-   transition: .5s;
- }
- .mercado-pago:hover {
-  opacity: .5;
- }
- .mercado-pago script {
- }
+/* Lightbox: tamaño fijo grande y imagen centrada */
+.lightbox .lb-outerContainer {
+  width: min(92vw, 1200px) !important;
+  height: min(82vh, 780px) !important;
+  background: #000;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+.lightbox .lb-container {
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.lightbox .lb-dataContainer {
+  width: min(92vw, 1200px) !important;
+}
+.lightbox .lb-image {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain;
+  object-position: center center;
+  display: block;
+  margin: auto;
+}
+.lightbox .lb-nav a.lb-prev,
+.lightbox .lb-nav a.lb-next {
+  opacity: 0.55;
+}
+@media (max-width: 900px) {
+  .galeria-mosaic {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 520px) {
+  .galeria-mosaic {
+    grid-template-columns: 1fr;
+  }
+}
+
+.section_galeria {
+  padding-top: 2rem;
+  text-align: center;
+  font-size: 1.15rem;
+  width: min(920px, 92%);
+  margin: 0 auto;
+}
+.section_galeria .wrapper {
+  font-size: 1rem;
+  width: 100%;
+}
+
+/* contacto / éxito */
+.exitoso {
+  text-align: center;
+  padding: 4rem 1.25rem 5rem;
+  max-width: 720px;
+  margin: 0 auto;
+  color: #f4f6fa;
+}
+.exitoso.exitoso-card {
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+  padding: 3rem 1.75rem;
+}
+.exitoso .nombre {
+  margin: 0 0 0.35rem;
+}
+.exitoso .nombre span {
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+.exitoso h2 {
+  color: #fff;
+  font-size: clamp(1.35rem, 3vw, 1.85rem);
+  margin: 0.5rem 0 1rem;
+}
+.exitoso div h3,
+.exitoso > h3 {
+  margin-bottom: 2rem;
+  color: rgba(244, 246, 250, 0.88);
+  font-weight: 400;
+  line-height: 1.55;
+  font-size: 1.1rem;
+}
+.exitoso-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.page-surface .exitoso .nuestra-historia {
+  color: #fff;
+  border-color: #fff;
+}
+.page-surface .exitoso .nuestra-historia:hover {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+}
+
+/* Inscripcion */
+.inscripcion-page {
+  padding-bottom: 0;
+}
+/* Usa el parallax de .page-surface (fondo fixed) */
+.inscripcion-hero {
+  position: relative;
+  min-height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  background: none;
+}
+.inscripcion-hero__content {
+  position: relative;
+  z-index: 1;
+  padding: 2.5rem 1.5rem 1.5rem;
+  max-width: 52rem;
+  width: 100%;
+}
+.inscripcion-hero__content .nombre {
+  margin: 0;
+  line-height: 1;
+}
+.inscripcion-hero__content .nombre span {
+  font-size: clamp(2.4rem, 5.5vw, 3.6rem);
+  letter-spacing: 0.04em;
+}
+.inscripcion-hero__content h2 {
+  margin: 0.5rem 0 1rem;
+  font-size: clamp(0.95rem, 2vw, 1.25rem);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  font-weight: 600;
+}
+@media (max-width: 560px) {
+  .inscripcion-hero__content h2 {
+    white-space: normal;
+    font-size: 0.95rem;
+  }
+}
+.inscripcion-hero__content p:last-child {
+  line-height: 1.7;
+  color: rgba(255,255,255,0.9);
+}
+.inscripcion-form-block {
+  position: relative;
+  z-index: 2;
+  padding: 0 1rem 2rem;
+  margin-top: 0;
+}
+
+.section-cursos-header{
+  background-color: rgba(0, 0, 0, .8);
+  position: fixed;
+  z-index: 100;
+}
