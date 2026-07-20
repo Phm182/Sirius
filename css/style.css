@@ -1,0 +1,615 @@
+html {
+    box-sizing: border-box;
+    height: 100%;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+body {
+    height: 100%;
+}
+
+:root {
+  --blue: rgba(9, 19, 78, 1);
+  --red: rgb(185, 21, 21);
+}
+.mobile {
+  display: none;
+}
+h5 {
+  font-size: 1.4em;
+  margin-left: 40%;
+}
+@media (max-width: 770px) {
+  .ordenador {
+    display: none;
+  }
+  .mobile {
+    display: inline-block;
+  }
+  h4 {
+    margin-left: 0;
+    text-align: center;
+  }
+}
+hr {
+  color: var(--red);
+  border: 1px solid;
+}
+
+/* Header */
+
+.parallax::before {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    filter: brightness(.7);
+    -webkit-filter: brightness(.7);
+    content: '';
+  }
+  
+  .contenedor::before {
+    background-image: url(../img/velas_para_crucero.jpg);
+    content: '';
+  }
+  .contenedor {
+    position: relative;
+    height: 95vh;
+    overflow: hidden;
+  }
+
+  .header {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;    
+  }
+  .logo{
+      font-size: .5rem;
+  }
+  .header a img {
+    position: relative;
+    height: 120px;
+    margin-left: 300px;
+    margin-top: 30px;
+    padding: 10px;
+    transition: .5s ease-in-out ;
+  }
+  .header a img:hover{
+      opacity: .3;
+  }
+  .options ul {
+      margin-right: 80px;
+      color: white;
+      position: relative;
+      font-weight: bold;
+  }
+  .options ul li{
+    padding: 12px;
+    display: inline-block;
+  }
+  .options ul li a{
+    text-decoration: none;
+    color: rgb(185, 21, 21);
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 50% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    transition: background-size .3s;
+    transition: .7s;
+    font-size: 1.2rem;
+  }
+  .options ul li a:hover{
+      color: white;  
+      background-size: 100% 2px;
+  }
+.sirius h1{
+    left: 0%;
+    color: white;
+    position: relative;
+    margin-left: 310px;
+    margin-top: 30vh;
+    font-size: 3.5em;
+    letter-spacing: .1em;
+    transition: all 300ms;
+}
+.sirius p{
+    left: 0%;
+    position: relative;
+    color: var(--red);
+    margin-left: 310px;
+    letter-spacing: .5em;
+    margin-top: -20px;
+    font-size: 1.3em;
+    font-weight: bold;
+    transition: all 300ms;
+}
+.tit-position p,
+.tit-position h1 {
+  left: 46%;
+  transition: all 300ms;
+}
+.menu-mobile {
+  display: none;
+}
+@media (max-width: 1250px) {
+  .header a img {
+    margin-left: 100px;
+  }
+  .options ul{
+    margin-right: 40px;
+  }
+  .sirius p,
+  .sirius h1{
+    margin-left: 100px;
+  }
+}
+@media (max-width: 770px) {
+  .header {
+    background-color: rgba(0, 0, 0, .6);
+    position: relative;
+    height: 15vh;
+  }
+  .menu-mobile {
+    display: block;
+  }
+  .menu-pc {
+    display: none;
+  }
+}
+@media (max-width: 480px){
+  .logo {
+    margin-left: -60px;
+  }
+  .header a img{
+    height: 100px;
+    top: -10px;
+  }
+  .sirius h1,
+  .sirius p {
+    text-align: center;
+    margin-left: 0;
+  }
+  .tit-position p,
+  .tit-position h1 {
+    left: 100%;
+  }
+}
+span {
+  font-family: 'Redressed', cursive;
+  color: var(--red);
+}
+/* Quienes somos */
+
+.contenedor2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding-bottom: 20px;
+}
+.nosotros-img {
+  padding: 70px;
+}
+.texto1{
+  font-size: 1.3em;
+  padding-left: 6rem;
+}
+.texto1 .nombre {
+  text-transform: uppercase;
+  padding-top: 30px;
+}
+.nuestra-historia{
+  padding: 10px 30px;
+  border: var(--red) 2px solid;
+  text-decoration: none;
+  transition: ease-in-out .5s;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.nuestra-historia2{
+  display: none;
+}
+.nuestra-historia:hover{
+  background-color: var(--blue);
+  color: white;
+}
+.nosotros{
+  margin-bottom: 60px;
+  width: 70%;
+  line-height: 30px;
+  text-align: justify;
+}
+@media (max-width: 1250px) {
+  .nosotros-img{
+    width: 50%;
+  }
+  .nosotros-img img{
+    width: 120%;
+  }
+  .texto1{
+    width: 50%;
+  }
+}
+@media (max-width: 770px) {
+  .contenedor2 {
+    display: block;
+    text-align: center;
+    overflow: hidden;
+  }
+  .nosotros-img{
+    width: 100%;
+  }
+  .nosotros-img img{
+    width: 100%;
+  }
+  .texto1{
+    width: 100%;
+    padding-left: 0rem;
+  }
+  .nosotros{
+    width: 70%;
+    margin: 0 auto;
+  }
+  .nuestra-historia{
+    display: none;
+  }
+  .nuestra-historia2{
+    display: inline-block;
+    padding: 10px 30px;
+    border: var(--red) 2px solid;
+    text-decoration: none;
+    transition: ease-in-out .5s;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .nuestra-historia2:hover{
+    background-color: var(--blue);
+    color: white;
+  }
+  .btn-nuestra-historia2{
+    text-align: center;
+  }
+  .nosotros-img2 img{
+    width: 75%;
+  }
+}
+
+/* Cursos */
+.cursos {
+  height: 100%;
+  width: 100%;
+  background-image: url(../img/thumb_14365_default_large.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+  content: '';
+}
+.cursos::before{
+  content:'';
+	position: absolute;
+  top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0,0,0,0.6);
+
+}
+.cursos h2{
+  text-align: center;
+  padding-top: 100px;
+  color: white;
+  font-size: 3em;
+  text-transform: uppercase;
+  letter-spacing: 10px;
+  position: relative;
+  margin-bottom: 60px;
+}
+.curso {
+  position: relative;
+  margin: 20px 50px 100px 50px;
+  overflow: hidden;
+  color: white;
+  line-height: 30px;
+  font-size: 1.2em;
+  text-align: center;
+  transition: ease-in-out .5s;
+  filter: brightness(.8);
+  height: 100%;
+  padding-bottom: 10px
+}
+.curso:hover {
+  transform: scale(1.05);
+  filter: brightness(1);
+}
+.curso h3{
+  text-align: center;
+  font-size: 2em;
+}
+.curso img{
+  width: 500px; 
+  height: 350px;
+}
+.curso p{
+  text-align: justify;
+  margin-bottom: 50px;
+}
+.contenedor-cursos{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+}
+.boton {
+  text-decoration: none;
+  color:var(--red);
+  padding: 10px 30px;
+  border: 2px solid var(--red);
+  transition: ease-in-out .5s;
+}
+.boton:hover{
+  background-color: var(--blue);
+  color: white;
+}
+@media (max-width: 1250px) {
+  .contenedor-cursos {
+    width: 100%;
+  }
+  .curso img{
+    width: 350px; 
+    height: 250px;
+  }
+  .nosotros-img .inscripción-img {
+    width: 100%;
+  }
+}
+@media (max-width: 770px) {
+  .contenedor-cursos {
+    display: block;
+    margin: 0;
+    overflow: auto;
+  }
+  .cursos h2 {
+    padding-top: 20px
+  }
+  .cursos {
+    height: 100%;
+    background-position: center center;
+  }
+  .curso p {
+    text-align: center;
+  }
+}
+/* Maps */
+
+.mapa {
+  height: 60vh;
+  width: 100%;
+  z-index: 1;
+}
+
+/* Footer */ 
+.footer {
+  width: 100%;
+  height: 100%;
+  background-color:var(--blue);
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  padding-bottom: 0;
+}
+.contenedor-footer{
+  padding: 2rem 8rem;
+  display: flex;
+  justify-content: space-between;
+}
+.caja-footer {
+  color: white;
+  flex-basis: calc(33.3% - 3rem);
+}
+.caja-footer h4 {
+  text-transform: uppercase;
+  font-size: 1.8rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.caja-footer span {
+  color: var(--red);
+}
+.caja-footer p {
+  text-align: justify;
+  font-size: 1.2em;
+  line-height: 2rem;
+}
+.footer-p p{
+  font-size: 1.2em;
+  line-height: 2rem;
+}
+.copyright {
+  color: white;
+  text-align: center;
+  width: 100%;
+  background-color:black;
+  font-size: .9em;
+}
+.nav-redes {
+  padding-top: 10px;
+}
+.nav-redes a {
+  color: var(--red);
+  font-size: 50px;
+  padding-right: 35px;
+  transition: ease-in-out .3s;
+}
+.nav-redes a:hover{
+  color: white;
+}
+@media (max-width: 1250px) {
+  .contenedor-footer {
+    padding: 2rem 4rem;
+  }
+  .caja-footer {
+    flex-basis: calc(33.3% - 1.5rem);
+  }
+  .caja-footer p {
+  font-size: 1.1em;
+  }
+  .nav-redes a {
+  font-size: 40px;
+  }
+}
+@media (max-width: 770px){
+  .contenedor-footer {
+    display: block;
+    text-align: center;
+  }
+  .nav-redes a {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+/* Quienes Somos */
+.section_quienes {
+  padding-top: 60px;
+}
+.header_quienes_somos {
+  background-color: rgba(0, 0, 0, .8);
+  position: fixed;
+  width: 100%;
+}
+.texto_historia {
+  margin-left: 20%;
+}
+@media (max-width: 770px) {
+  .texto_historia {
+    margin-left: 0;
+  }
+  .texto_historia h3{
+    margin: 30px 20px;
+    text-align: center;
+  }
+  .texto_historia p {
+    margin-bottom: 20px;
+  }    
+  .texto1 h5 {
+    text-align: center;
+    margin-left: 10px !important;
+  }
+
+}
+
+/* Cursos */
+.pagina-cursos {
+  padding-top: 10px;
+}
+.section-cursos-header{
+  background-color: rgba(0, 0, 0, .8);
+  position: fixed;
+  z-index: 100;
+}
+.pagina-cursos-footer {
+  position: relative;
+}
+@media (max-width: 770px){
+  .pagina-cursos {
+    padding-top: 7rem;
+  }
+}
+
+/* curso */
+.info-curso {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 18%;
+  margin-right: 18%;
+}
+.info-curso2 {
+  margin-left: 2rem;
+}
+@media (max-width: 1250px){
+  .info-curso2 h3 {
+    margin-top: 0;
+  }
+}
+@media (max-width: 770px){
+  .info-curso {
+    display: block;
+    margin-bottom: 2rem;
+  }
+  .info-curso2 {
+    margin-left: 0;
+  }
+  .info-curso2 h3 {
+    margin-top: 2rem;
+  }
+}
+
+/* Galeria */
+
+.section_galeria {
+  padding-top: 7rem;
+  text-align: center;
+  font-size: 1.5em;
+}
+.section_galeria div {
+  padding-left: 0;
+}
+.section_galeria div:last-child{
+  margin-bottom: 1rem;
+}
+.section_galeria {
+  width: 70%;
+  margin: 0 auto;
+}
+.caja-galeria {
+  display: flex;
+  flex-wrap: wrap;
+}
+.caja-galeria div {
+  padding: 10px;
+}
+.caja-galeria div img{
+  height: 200px;
+  width: 400px;
+}
+@media (max-width: 770px) {
+  .section_galeria {
+    width: 100%;
+    align-items: center;
+  }
+  .section_galeria div {
+    margin: 0 auto;
+  }
+}
+/* contacto */
+.exitoso {
+  text-align: center;
+  padding: 11rem 0;
+}
+.exitoso div h3{
+  margin-bottom: 3rem;
+}
+
+ /* Inscripcion */
+ .mercado-pago {
+   width: 0;
+   margin: 0 !important;
+   transition: .5s;
+ }
+ .mercado-pago:hover {
+  opacity: .5;
+ }
+ .mercado-pago script {
+ }
