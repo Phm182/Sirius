@@ -5,6 +5,10 @@ $password = '';
 $dbname = 'sirius';
 $port = '3306';
 
+// Solo para crear el primer usuario en /admin/setup.php desde producción.
+// Usá una clave larga y única; podés eliminarla después de crear el administrador.
+$admin_setup_key = 'CAMBIAR-POR-UNA-CLAVE-LARGA-Y-UNICA';
+
 $conn = new mysqli($host, $user, $password, $dbname, $port);
 
 if ($conn->connect_error) {

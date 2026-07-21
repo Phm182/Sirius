@@ -14,6 +14,7 @@
     <div><a href="galeria.php">Galería</a></div>
     <!-- <div><a href="#">Noticias</a></div> -->
     <div><a href="contacto.php">Contacto</a></div>
+    <div><a href="admin/login.php"><i class="fas fa-user-shield" aria-hidden="true"></i> Administración</a></div>
   </section>
   
 </section>

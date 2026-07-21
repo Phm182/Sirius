@@ -12,6 +12,11 @@
                                             <li><a href="galeria.php">Galería</a></li>
                                             <!-- <li><a href="#">Noticias</a></li> -->
                                             <li><a href="contacto.php">Contacto</a></li>
+                                            <li class="admin-access">
+                                                <a href="admin/login.php" class="admin-access__link" aria-label="Ingresar al panel de administración" title="Administración">
+                                                    <i class="fas fa-user-shield" aria-hidden="true"></i>
+                                                </a>
+                                            </li>
                         </ul>
                     </div> 
                   </div>

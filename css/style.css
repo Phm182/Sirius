@@ -199,6 +199,27 @@ hr {
       color: white;  
       background-size: 100% 2px;
   }
+  .options ul li.admin-access {
+    padding-left: 5px;
+  }
+  .options ul li .admin-access__link {
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid rgba(185, 21, 21, .65);
+    border-radius: 50%;
+    background-image: none;
+    font-size: 1rem;
+  }
+  .options ul li .admin-access__link:hover {
+    color: #fff;
+    border-color: var(--red);
+    background-color: var(--red);
+    transform: translateY(-1px);
+  }
 .sirius h1{
     left: 0%;
     color: white;
