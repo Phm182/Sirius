@@ -7,11 +7,13 @@
 
     // Sede Náutica — Costanera Norte (CABA). Coordenada aproximada; se ajusta con la dirección exacta.
     var sede = [-34.5584, -58.4112];
+    var configuredZoom = parseInt(mapEl.dataset.zoom || "15", 10);
+    var zoom = Math.min(19, Math.max(10, configuredZoom || 15));
 
     var map = L.map("mapa", {
       scrollWheelZoom: false,
       zoomControl: false,
-    }).setView(sede, 15);
+    }).setView(sede, zoom);
 
     L.control.zoom({ position: "bottomright" }).addTo(map);
 
@@ -47,5 +49,17 @@
     mapEl.addEventListener("mouseleave", function () {
       map.scrollWheelZoom.disable();
     });
+
+    var resizeTimer;
+    window.addEventListener("resize", function () {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(function () {
+        map.invalidateSize();
+      }, 150);
+    });
+
+    window.setTimeout(function () {
+      map.invalidateSize();
+    }, 250);
   });
 })();

@@ -1,7 +1,6 @@
--- Ejecutar UNA VEZ sobre una instalación existente de Sirius.
+-- Ejecutar UNA VEZ sobre la base de datos de una instalación existente de Sirius.
 -- Para una instalación nueva alcanza con importar sirius.sql.
-
-USE `sirius`;
+-- En hosting compartido, seleccioná primero la base asignada desde phpMyAdmin.
 
 ALTER TABLE `contacto`
   ADD COLUMN `estado` VARCHAR(30) NOT NULL DEFAULT 'nuevo' AFTER `metodo`,

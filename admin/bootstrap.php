@@ -167,3 +167,74 @@ function admin_format_date(?string $value): string
     $timestamp = strtotime($value);
     return $timestamp ? date('d/m/Y H:i', $timestamp) : $value;
 }
+
+function admin_cms_ready(mysqli $conn): bool
+{
+    return admin_table_exists($conn, 'sitio_contenido')
+        && admin_table_exists($conn, 'curso')
+        && admin_table_exists($conn, 'galeria_foto');
+}
+
+function admin_course_options(mysqli $conn): array
+{
+    $fallback = ['lanchas' => 'Lanchas', 'veleros' => 'Veleros', 'yates' => 'Yates'];
+    if (!admin_table_exists($conn, 'curso')) {
+        return $fallback;
+    }
+    try {
+        $result = $conn->query('SELECT slug, nombre FROM curso ORDER BY orden ASC, nombre ASC');
+        if (!$result) {
+            return $fallback;
+        }
+        $options = [];
+        while ($row = $result->fetch_assoc()) {
+            $options[(string) $row['slug']] = (string) $row['nombre'];
+        }
+        return $options ?: $fallback;
+    } catch (Throwable $exception) {
+        return $fallback;
+    }
+}
+
+/**
+ * Guarda una imagen validada por contenido real y devuelve su ruta web.
+ *
+ * @throws RuntimeException
+ */
+function admin_store_image(array $file, string $folder): string
+{
+    if (($file['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK) {
+        throw new RuntimeException('No se pudo recibir la imagen.');
+    }
+    if ((int) ($file['size'] ?? 0) < 1 || (int) $file['size'] > 8 * 1024 * 1024) {
+        throw new RuntimeException('La imagen debe pesar menos de 8 MB.');
+    }
+
+    $tmp = (string) ($file['tmp_name'] ?? '');
+    $info = @getimagesize($tmp);
+    $allowed = [
+        IMAGETYPE_JPEG => ['image/jpeg', 'jpg'],
+        IMAGETYPE_PNG => ['image/png', 'png'],
+        IMAGETYPE_WEBP => ['image/webp', 'webp'],
+    ];
+    $imageType = (int) ($info[2] ?? 0);
+    if (!isset($allowed[$imageType]) || ($info['mime'] ?? '') !== $allowed[$imageType][0]) {
+        throw new RuntimeException('Solo se admiten imágenes JPG, PNG o WEBP válidas.');
+    }
+
+    $folder = trim($folder, '/\\');
+    if (!in_array($folder, ['site', 'gallery'], true)) {
+        throw new RuntimeException('Destino de imagen no válido.');
+    }
+    $relativeDirectory = 'uploads/' . $folder;
+    $directory = SITE_ROOT . '/' . $relativeDirectory;
+    if (!is_dir($directory) && !mkdir($directory, 0755, true) && !is_dir($directory)) {
+        throw new RuntimeException('No se pudo crear la carpeta de imágenes.');
+    }
+
+    $filename = bin2hex(random_bytes(16)) . '.' . $allowed[$imageType][1];
+    if (!move_uploaded_file($tmp, $directory . '/' . $filename)) {
+        throw new RuntimeException('No se pudo guardar la imagen.');
+    }
+    return $relativeDirectory . '/' . $filename;
+}

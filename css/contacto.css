@@ -252,3 +252,88 @@ form .field textarea:-webkit-autofill {
   font-size: 1rem;
   line-height: 1.6;
 }
+
+@media (max-width: 560px) {
+  .wrapper {
+    width: 100%;
+  }
+  form * {
+    font-size: 16px;
+  }
+  form .field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+  }
+  form .field label,
+  form .field label.label-static {
+    position: static;
+    order: -1;
+    width: 100%;
+    height: auto;
+    padding: 10px 12px;
+    border-radius: 6px 6px 0 0;
+    font-size: 12px;
+    line-height: 1.35;
+    pointer-events: auto;
+  }
+  form .field input[type="text"],
+  form .field input[type="email"],
+  form .field input[type="tel"],
+  form .field textarea {
+    height: 52px;
+    padding: 12px 14px;
+    border-radius: 0 0 6px 6px;
+    font-size: 16px;
+  }
+  form .field textarea,
+  form .field textarea:focus,
+  form .field textarea:not(:placeholder-shown) {
+    min-height: 110px;
+    height: 110px;
+    padding-top: 14px;
+  }
+  form .field input:focus + label,
+  form .field input:not(:placeholder-shown) + label,
+  form .field textarea:focus + label,
+  form .field textarea:not(:placeholder-shown) + label,
+  form .field:hover label:not(.label-static) {
+    width: 100%;
+  }
+  form .field.field-select select {
+    height: 52px;
+    padding-left: 12px;
+    font-size: 16px;
+    background-position: calc(100% - 18px) 22px, calc(100% - 12px) 22px;
+  }
+  form input[type="submit"],
+  form .button {
+    min-height: 50px;
+    padding: 14px 16px;
+    margin-bottom: 1rem;
+    font-size: 14px;
+  }
+  .radio {
+    margin-block: .75rem 1rem;
+  }
+  .radio_options {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: start;
+    width: max-content;
+    max-width: 100%;
+    margin-inline: auto;
+    gap: .8rem;
+  }
+  .radio_options > div {
+    display: flex;
+    align-items: center;
+  }
+  .radio_options input[type="radio"] {
+    width: 20px;
+    height: 20px;
+  }
+  .form-error {
+    width: 100%;
+  }
+}

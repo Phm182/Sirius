@@ -22,11 +22,13 @@ $flash = admin_take_flash();
     </a>
 
     <?php if (admin_is_logged_in()): ?>
-      <button class="admin-menu-button" type="button" data-menu-toggle aria-label="Abrir menú">☰</button>
-      <nav class="admin-nav" data-admin-nav>
+      <button class="admin-menu-button" type="button" data-menu-toggle
+              aria-label="Abrir menú" aria-expanded="false" aria-controls="admin-navigation">☰</button>
+      <nav class="admin-nav" id="admin-navigation" data-admin-nav>
         <a class="<?php echo $activePage === 'dashboard' ? 'is-active' : ''; ?>" href="index.php">Resumen</a>
         <a class="<?php echo $activePage === 'contactos' ? 'is-active' : ''; ?>" href="index.php?tipo=contacto">Contactos</a>
         <a class="<?php echo $activePage === 'inscripciones' ? 'is-active' : ''; ?>" href="index.php?tipo=inscripcion">Inscripciones</a>
+        <a class="<?php echo $activePage === 'editor' ? 'is-active' : ''; ?>" href="editor.php">Editor</a>
         <a class="<?php echo $activePage === 'cuenta' ? 'is-active' : ''; ?>" href="cuenta.php">Cuenta</a>
         <a href="../index.php" target="_blank" rel="noopener">Ver sitio</a>
         <form action="logout.php" method="post">

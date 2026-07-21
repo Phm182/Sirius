@@ -8,10 +8,11 @@ if (isset($_POST['enviar'])) {
     $experiencia = trim(strip_tags((string) ($_POST['experiencia'] ?? 'ninguna')));
     $mensaje = trim(strip_tags((string) ($_POST['mensaje'] ?? '')));
 
-    $cursos_ok = ['lanchas', 'veleros', 'yates'];
     $exp_ok = ['ninguna', 'basica', 'intermedia', 'avanzada'];
 
-    if (!in_array($curso, $cursos_ok, true)) {
+    require_once 'inc/funciones/bd.php';
+    require_once 'inc/funciones/contenido.php';
+    if (!curso_por_slug($curso, $conn)) {
         header('Location: inscripcion.php?error=1');
         exit;
     }
@@ -25,7 +26,6 @@ if (isset($_POST['enviar'])) {
     }
 
     try {
-        require_once 'inc/funciones/bd.php';
         $stmt = $conn->prepare(
             'INSERT INTO `inscripcion` (nombre, apellido, celular, email, curso, experiencia, mensaje) VALUES (?, ?, ?, ?, ?, ?, ?)'
         );

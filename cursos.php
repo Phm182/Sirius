@@ -1,4 +1,7 @@
-<?php include 'inc/templates/header.php'; ?>
+<?php
+include 'inc/templates/header.php';
+$courses = cursos_activos($conn);
+?>
 
 <header class="site-header" id="site-header">
   <div class="header">
@@ -9,36 +12,25 @@
 <section class="section-cursos page-offset">
   <div id="cursos" class="cursos pagina-cursos">
     <div class="cursos-titulo">
-      <p class="nombre"><span>Sirius</span></p>
-      <h2>Cursos</h2>
+      <p class="nombre"><span><?php echo htmlspecialchars(contenido('cursos.eyebrow', 'Sirius', $conn), ENT_QUOTES, 'UTF-8'); ?></span></p>
+      <h2><?php echo htmlspecialchars(contenido('cursos.titulo', 'Cursos', $conn), ENT_QUOTES, 'UTF-8'); ?></h2>
+      <p class="cursos-intro"><?php echo nl2br(htmlspecialchars(contenido('cursos.intro', '', $conn), ENT_QUOTES, 'UTF-8')); ?></p>
     </div>
-    <div class="contenedor-cursos">
-      <div class="curso">
-        <img src="img/1.jpg" alt="Curso de lanchas">
-        <h3>Lanchas</h3>
-        <p>
-          Ideal para quienes quieren manejar embarcaciones a motor con seguridad. Aprendés maniobras básicas y avanzadas, normativa, comunicaciones y práctica en río con instructores a bordo.
-        </p>
-        <a href="lanchas.php" class="boton">Más información</a>
-      </div>
-
-      <div class="curso">
-        <img src="img/2.jpg" alt="Curso de veleros">
-        <h3>Veleros</h3>
-        <p>
-          Descubrí el arte de navegar a vela: trimado, ceñida, empopada, cambios de rumbo y trabajo en equipo. Una formación completa para disfrutar el viento con criterio y control.
-        </p>
-        <a href="veleros.php" class="boton">Más información</a>
-      </div>
-
-      <div class="curso">
-        <img src="img/3.jpg" alt="Curso de yates">
-        <h3>Yates</h3>
-        <p>
-          Programa avanzado para quienes buscan navegar yates con responsabilidad: planificación de travesías, sistemas a bordo, guardias, meteorología aplicada y liderazgo de tripulación.
-        </p>
-        <a href="yates.php" class="boton">Más información</a>
-      </div>
+    <p class="cursos-swipe-hint" aria-hidden="true">
+      <i class="fas fa-hand-pointer"></i>
+      Deslizá para ver todos los cursos
+      <span>→</span>
+    </p>
+    <div class="contenedor-cursos" data-course-slider role="region" aria-label="Cursos disponibles" tabindex="0">
+      <?php foreach ($courses as $course): ?>
+        <div class="curso">
+          <img src="<?php echo htmlspecialchars($course['imagen'], ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars($course['imagen_alt'], ENT_QUOTES, 'UTF-8'); ?>">
+          <h3><?php echo htmlspecialchars($course['nombre'], ENT_QUOTES, 'UTF-8'); ?></h3>
+          <p><?php echo nl2br(htmlspecialchars($course['resumen'], ENT_QUOTES, 'UTF-8')); ?></p>
+          <p><b>Arancel:</b> <?php echo htmlspecialchars($course['precio'], ENT_QUOTES, 'UTF-8'); ?></p>
+          <a href="curso.php?slug=<?php echo rawurlencode($course['slug']); ?>" class="boton">Más información</a>
+        </div>
+      <?php endforeach; ?>
     </div>
   </div>
 </section>

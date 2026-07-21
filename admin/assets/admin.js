@@ -3,8 +3,29 @@ document.addEventListener("DOMContentLoaded", function () {
   var nav = document.querySelector("[data-admin-nav]");
 
   if (button && nav) {
+    function setMenu(open) {
+      nav.classList.toggle("is-open", open);
+      button.setAttribute("aria-expanded", open ? "true" : "false");
+      button.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+    }
+
     button.addEventListener("click", function () {
-      nav.classList.toggle("is-open");
+      setMenu(!nav.classList.contains("is-open"));
+    });
+
+    nav.addEventListener("click", function (event) {
+      if (event.target.closest("a")) setMenu(false);
+    });
+
+    document.addEventListener("click", function (event) {
+      if (!nav.contains(event.target) && !button.contains(event.target)) setMenu(false);
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && nav.classList.contains("is-open")) {
+        setMenu(false);
+        button.focus();
+      }
     });
   }
 

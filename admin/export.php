@@ -11,12 +11,13 @@ if (!in_array($type, ['contacto', 'inscripcion'], true)) {
 $status = trim((string) ($_GET['estado'] ?? ''));
 $search = trim((string) ($_GET['buscar'] ?? ''));
 $course = trim((string) ($_GET['curso'] ?? ''));
+$courseOptions = admin_course_options($conn);
 $archived = isset($_GET['archivados']) && $_GET['archivados'] === '1' ? 1 : 0;
 
 if ($status !== '' && !array_key_exists($status, admin_statuses($type))) {
     $status = '';
 }
-if (!in_array($course, ['', 'lanchas', 'veleros', 'yates'], true)) {
+if ($course !== '' && !array_key_exists($course, $courseOptions)) {
     $course = '';
 }
 

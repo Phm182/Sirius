@@ -9,9 +9,9 @@
 <section class="page-offset page-surface">
   <div class="section_galeria">
     <div class="texto1">
-      <p class="nombre"><span>Sirius</span></p>
-      <h3>Contactanos</h3>
-      <p class="contacto-lead">Consultas sobre cursos, fechas, aranceles o cómo llegar a la sede. Te respondemos a la brevedad.</p>
+      <p class="nombre"><span><?php echo htmlspecialchars(contenido('contacto.eyebrow', 'Sirius', $conn), ENT_QUOTES, 'UTF-8'); ?></span></p>
+      <h3><?php echo htmlspecialchars(contenido('contacto.titulo', 'Contactanos', $conn), ENT_QUOTES, 'UTF-8'); ?></h3>
+      <p class="contacto-lead"><?php echo nl2br(htmlspecialchars(contenido('contacto.intro', '', $conn), ENT_QUOTES, 'UTF-8')); ?></p>
     </div>
 
     <hr>

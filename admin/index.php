@@ -11,6 +11,7 @@ $activePage = $isDashboard ? 'dashboard' : ($type === 'contacto' ? 'contactos' :
 $status = trim((string) ($_GET['estado'] ?? ''));
 $search = trim((string) ($_GET['buscar'] ?? ''));
 $course = trim((string) ($_GET['curso'] ?? ''));
+$courseOptions = admin_course_options($conn);
 $archived = isset($_GET['archivados']) && $_GET['archivados'] === '1' ? 1 : 0;
 $page = max(1, (int) ($_GET['pagina'] ?? 1));
 $perPage = 20;
@@ -19,7 +20,7 @@ $offset = ($page - 1) * $perPage;
 if ($status !== '' && !array_key_exists($status, admin_statuses($type))) {
     $status = '';
 }
-if (!in_array($course, ['', 'lanchas', 'veleros', 'yates'], true)) {
+if ($course !== '' && !array_key_exists($course, $courseOptions)) {
     $course = '';
 }
 
@@ -221,8 +222,8 @@ require __DIR__ . '/templates/header.php';
           <label for="curso">Curso</label>
           <select id="curso" name="curso">
             <option value="">Todos</option>
-            <?php foreach (['lanchas' => 'Lanchas', 'veleros' => 'Veleros', 'yates' => 'Yates'] as $value => $label): ?>
-              <option value="<?php echo $value; ?>" <?php echo $course === $value ? 'selected' : ''; ?>><?php echo $label; ?></option>
+            <?php foreach ($courseOptions as $value => $label): ?>
+              <option value="<?php echo admin_h($value); ?>" <?php echo $course === $value ? 'selected' : ''; ?>><?php echo admin_h($label); ?></option>
             <?php endforeach; ?>
           </select>
         </div>

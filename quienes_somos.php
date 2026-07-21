@@ -1,4 +1,7 @@
-<?php include 'inc/templates/header.php'; ?>
+<?php
+include 'inc/templates/header.php';
+$aboutImage = contenido_asset('quienes.imagen', 'img/4.jpeg', $conn);
+?>
 
 <header class="site-header is-scrolled" id="site-header">
   <div class="header">
@@ -9,52 +12,52 @@
 <section class="page-offset page-surface">
   <div class="contenedor2 section_quienes">
     <div class="nosotros-img ordenador">
-      <img src="img/4.jpeg" alt="Equipo e instalaciones de Sirius">
+      <img src="<?php echo htmlspecialchars($aboutImage, ENT_QUOTES, 'UTF-8'); ?>" alt="Equipo e instalaciones de Sirius">
     </div>
 
     <div class="texto1 ordenador">
-      <p class="nombre"><span>Sirius</span></p>
-      <h3>Escuela de navegación</h3>
+      <p class="nombre"><span><?php echo htmlspecialchars(contenido('quienes.eyebrow', 'Sirius', $conn), ENT_QUOTES, 'UTF-8'); ?></span></p>
+      <h3><?php echo htmlspecialchars(contenido('quienes.titulo', 'Escuela de navegación', $conn), ENT_QUOTES, 'UTF-8'); ?></h3>
       <p class="nosotros">
-        En Sirius formamos navegantes con criterio, seguridad y pasión por el agua. Combinamos teoría sólida con horas reales a bordo para que cada alumno salga con confianza y herramientas concretas.
+        <?php echo nl2br(htmlspecialchars(contenido('quienes.intro', '', $conn), ENT_QUOTES, 'UTF-8')); ?>
       </p>
-      <a href="#nuestra-historia" class="nuestra-historia">Nuestra historia</a>
+      <a href="#nuestra-historia" class="nuestra-historia"><?php echo htmlspecialchars(contenido('quienes.boton', 'Nuestra historia', $conn), ENT_QUOTES, 'UTF-8'); ?></a>
     </div>
 
     <div class="texto1 mobile">
-      <p class="nombre"><span>Sirius</span></p>
-      <h3>Escuela de navegación</h3>
+      <p class="nombre"><span><?php echo htmlspecialchars(contenido('quienes.eyebrow', 'Sirius', $conn), ENT_QUOTES, 'UTF-8'); ?></span></p>
+      <h3><?php echo htmlspecialchars(contenido('quienes.titulo', 'Escuela de navegación', $conn), ENT_QUOTES, 'UTF-8'); ?></h3>
       <p class="nosotros">
-        En Sirius formamos navegantes con criterio, seguridad y pasión por el agua. Combinamos teoría sólida con horas reales a bordo para que cada alumno salga con confianza y herramientas concretas.
+        <?php echo nl2br(htmlspecialchars(contenido('quienes.intro', '', $conn), ENT_QUOTES, 'UTF-8')); ?>
       </p>
     </div>
     <div class="nosotros-img mobile">
-      <img src="img/4.jpeg" alt="Equipo e instalaciones de Sirius">
+      <img src="<?php echo htmlspecialchars($aboutImage, ENT_QUOTES, 'UTF-8'); ?>" alt="Equipo e instalaciones de Sirius">
     </div>
   </div>
   <div class="btn-nuestra-historia2">
-    <a href="#nuestra-historia" class="nuestra-historia2">Nuestra historia</a>
+    <a href="#nuestra-historia" class="nuestra-historia2"><?php echo htmlspecialchars(contenido('quienes.boton', 'Nuestra historia', $conn), ENT_QUOTES, 'UTF-8'); ?></a>
   </div>
 
   <hr id="nuestra-historia">
   <div class="texto1">
     <h5>Nuestra historia</h5>
     <div class="texto_historia">
-      <h3>De la pasión por navegar a una escuela</h3>
+      <h3><?php echo htmlspecialchars(contenido('quienes.historia_titulo', '', $conn), ENT_QUOTES, 'UTF-8'); ?></h3>
       <p class="nosotros">
-        Sirius nace de años de experiencia a bordo y de la necesidad de enseñar navegación de forma clara, moderna y cercana. Empezamos acompañando a quienes daban sus primeros pasos en lancha y, con el tiempo, armamos un programa completo que hoy incluye veleros y yates.
+        <?php echo nl2br(htmlspecialchars(contenido('quienes.historia_texto', '', $conn), ENT_QUOTES, 'UTF-8')); ?>
       </p>
-      <h3>Método: teoría que se vive en el agua</h3>
+      <h3><?php echo htmlspecialchars(contenido('quienes.metodo_titulo', '', $conn), ENT_QUOTES, 'UTF-8'); ?></h3>
       <p class="nosotros">
-        Creemos que se aprende navegando. Por eso cada módulo teórico se traduce en práctica real: amarre, zarpe, comunicaciones, seguridad, lectura del entorno y toma de decisiones. El objetivo no es solo aprobar un contenido, sino sentirse capaz en cubierta.
+        <?php echo nl2br(htmlspecialchars(contenido('quienes.metodo_texto', '', $conn), ENT_QUOTES, 'UTF-8')); ?>
       </p>
-      <h3>Costanera Norte como aula abierta</h3>
+      <h3><?php echo htmlspecialchars(contenido('quienes.sede_titulo', '', $conn), ENT_QUOTES, 'UTF-8'); ?></h3>
       <p class="nosotros">
-        Nuestra sede náutica en la Costanera Norte nos permite entrenar en un entorno vivo, con tráfico, corrientes y situaciones reales de río. Es el escenario ideal para construir oficio y criterio náutico.
+        <?php echo nl2br(htmlspecialchars(contenido('quienes.sede_texto', '', $conn), ENT_QUOTES, 'UTF-8')); ?>
       </p>
-      <h3>Una comunidad que sigue creciendo</h3>
+      <h3><?php echo htmlspecialchars(contenido('quienes.comunidad_titulo', '', $conn), ENT_QUOTES, 'UTF-8'); ?></h3>
       <p class="nosotros">
-        Más que un curso, Sirius es una comunidad de personas que aman el agua. Alumnos, instructores y egresados comparten salidas, consultas y ganas de seguir aprendiendo. Si estás buscando dar el salto, este es tu puerto de partida.
+        <?php echo nl2br(htmlspecialchars(contenido('quienes.comunidad_texto', '', $conn), ENT_QUOTES, 'UTF-8')); ?>
       </p>
     </div>
   </div>

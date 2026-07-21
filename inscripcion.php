@@ -9,9 +9,9 @@
 <section class="inscripcion-page page-offset page-surface">
   <div class="inscripcion-hero">
     <div class="inscripcion-hero__content">
-      <p class="nombre"><span>Sirius</span></p>
-      <h2>Inscripción a la escuela náutica</h2>
-      <p>Completá tus datos y elegí el curso. Te contactamos para confirmar vacante, fechas y aranceles.</p>
+      <p class="nombre"><span><?php echo htmlspecialchars(contenido('inscripcion.eyebrow', 'Sirius', $conn), ENT_QUOTES, 'UTF-8'); ?></span></p>
+      <h2><?php echo htmlspecialchars(contenido('inscripcion.titulo', 'Inscripción a la escuela náutica', $conn), ENT_QUOTES, 'UTF-8'); ?></h2>
+      <p><?php echo nl2br(htmlspecialchars(contenido('inscripcion.intro', '', $conn), ENT_QUOTES, 'UTF-8')); ?></p>
     </div>
   </div>
 

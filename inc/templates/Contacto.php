@@ -3,40 +3,42 @@
     <div class="form_contacto">
       <div class="field">
         <input type="text" id="nombre" name="nombre" placeholder=" " value="" required autofocus>
-        <label for="nombre">Nombre</label>
+        <label for="nombre"><?php echo htmlspecialchars(contenido('contacto.label_nombre', 'Nombre', $conn), ENT_QUOTES, 'UTF-8'); ?></label>
       </div>
       <div class="field">
-        <input type="tel" id="celular" name="celular" placeholder=" " minlength="10" value="" required>
-        <label for="celular">Celular</label>
+        <input type="tel" id="celular" name="celular" placeholder=" " minlength="10" value=""
+               inputmode="tel" autocomplete="tel" required>
+        <label for="celular"><?php echo htmlspecialchars(contenido('contacto.label_celular', 'Celular', $conn), ENT_QUOTES, 'UTF-8'); ?></label>
       </div>
       <div class="field">
-        <input type="email" id="email" name="email" placeholder=" " value="" required>
-        <label for="email">E-Mail</label>
+        <input type="email" id="email" name="email" placeholder=" " value=""
+               inputmode="email" autocomplete="email" required>
+        <label for="email"><?php echo htmlspecialchars(contenido('contacto.label_email', 'E-Mail', $conn), ENT_QUOTES, 'UTF-8'); ?></label>
       </div>
       <div class="field">
         <textarea id="consulta" rows="4" name="consulta" placeholder=" " required></textarea>
-        <label for="consulta">Consulta</label>
+        <label for="consulta"><?php echo htmlspecialchars(contenido('contacto.label_consulta', 'Consulta', $conn), ENT_QUOTES, 'UTF-8'); ?></label>
       </div>
       <div class="radio">
         <div>
-          <p>¿Por qué medio preferís la respuesta?</p>
+          <p><?php echo htmlspecialchars(contenido('contacto.label_medio', '¿Por qué medio preferís la respuesta?', $conn), ENT_QUOTES, 'UTF-8'); ?></p>
         </div>
         <div class="radio_options">
           <div>
             <input type="radio" id="metodo-celular" name="metodo" value="celular" checked>
-            <label for="metodo-celular">Celular / WhatsApp</label>
+            <label for="metodo-celular"><?php echo htmlspecialchars(contenido('contacto.label_whatsapp', 'Celular / WhatsApp', $conn), ENT_QUOTES, 'UTF-8'); ?></label>
           </div>
           <div>
             <input type="radio" id="metodo-email" name="metodo" value="email">
-            <label for="metodo-email">Correo electrónico</label>
+            <label for="metodo-email"><?php echo htmlspecialchars(contenido('contacto.label_correo', 'Correo electrónico', $conn), ENT_QUOTES, 'UTF-8'); ?></label>
           </div>
           <div>
             <input type="radio" id="metodo-ambos" name="metodo" value="ambos metodos">
-            <label for="metodo-ambos">Ambos</label>
+            <label for="metodo-ambos"><?php echo htmlspecialchars(contenido('contacto.label_ambos', 'Ambos', $conn), ENT_QUOTES, 'UTF-8'); ?></label>
           </div>
         </div>
       </div>
-      <input id="btn_enviar" class="button" name="enviar" type="submit" value="Enviar consulta">
+      <input id="btn_enviar" class="button" name="enviar" type="submit" value="<?php echo htmlspecialchars(contenido('contacto.boton', 'Enviar consulta', $conn), ENT_QUOTES, 'UTF-8'); ?>">
     </div>
   </form>
 </div>
