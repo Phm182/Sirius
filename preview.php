@@ -3,8 +3,7 @@ declare(strict_types=1);
 
 /**
  * Vista previa privada del sitio para el panel de administración.
- * Renderiza las páginas públicas reales aplicando el borrador sin guardar
- * que el editor deja en la sesión. Solo accesible con sesión de admin activa.
+ * Con ?edit=1 inyecta el editor visual sobre la página real.
  */
 
 $isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
@@ -26,10 +25,13 @@ if (empty($_SESSION['admin_id']) || (int) $_SESSION['admin_id'] <= 0) {
     exit('No autorizado.');
 }
 
-// El editor embebe esta página en un iframe del mismo origen.
 header('X-Frame-Options: SAMEORIGIN');
 header('X-Robots-Tag: noindex, nofollow');
 header('Cache-Control: no-store, no-cache, must-revalidate');
+
+if (empty($_SESSION['admin_csrf'])) {
+    $_SESSION['admin_csrf'] = bin2hex(random_bytes(32));
+}
 
 $overrides = $_SESSION['cms_preview'] ?? [];
 if (is_array($overrides) && $overrides !== []) {
@@ -49,6 +51,11 @@ $page = (string) ($_GET['page'] ?? 'index.php');
 if (!in_array($page, $allowedPages, true)) {
     $page = 'index.php';
 }
+
+$editMode = isset($_GET['edit']) && (string) $_GET['edit'] === '1';
+$GLOBALS['cms_edit_mode'] = $editMode;
+$GLOBALS['cms_editor_csrf'] = (string) $_SESSION['admin_csrf'];
+$GLOBALS['cms_editor_api'] = 'admin/cms_api.php';
 
 if (!defined('SIRIUS_PREVIEW')) {
     define('SIRIUS_PREVIEW', true);

@@ -12,9 +12,9 @@ $fotos = galeria_activa($conn);
 <section class="page-offset page-surface">
   <div class="galeria-page">
     <div class="galeria-hero">
-      <p class="nombre"><span><?php echo htmlspecialchars(contenido('galeria.eyebrow', 'Sirius', $conn), ENT_QUOTES, 'UTF-8'); ?></span></p>
-      <h2><?php echo htmlspecialchars(contenido('galeria.titulo', 'Galería a bordo', $conn), ENT_QUOTES, 'UTF-8'); ?></h2>
-      <p class="galeria-lead"><?php echo nl2br(htmlspecialchars(contenido('galeria.intro', '', $conn), ENT_QUOTES, 'UTF-8')); ?></p>
+      <p class="nombre"><span><?php cms_text('galeria.eyebrow', 'Sirius', $conn); ?></span></p>
+      <h2><?php cms_text('galeria.titulo', 'Galería a bordo', $conn); ?></h2>
+      <p class="galeria-lead"><?php cms_text('galeria.intro', '', $conn, true); ?></p>
     </div>
 
     <?php if (count($fotos) > 1): ?>
@@ -32,8 +32,9 @@ $fotos = galeria_activa($conn);
       <?php foreach ($fotos as $foto): ?>
         <a href="<?php echo htmlspecialchars($foto['archivo'], ENT_QUOTES, 'UTF-8'); ?>"
            class="galeria-item"
-           data-lightbox="galeria"
-           data-title="<?php echo htmlspecialchars($foto['titulo'], ENT_QUOTES, 'UTF-8'); ?>">
+           <?php if (!cms_edit_mode()): ?>data-lightbox="galeria"<?php endif; ?>
+           data-title="<?php echo htmlspecialchars($foto['titulo'], ENT_QUOTES, 'UTF-8'); ?>"
+           <?php echo ((int) $foto['id'] > 0) ? cms_entity_attrs('gallery', (int) $foto['id'], (string) $foto['titulo']) : ''; ?>>
           <img src="<?php echo htmlspecialchars($foto['archivo'], ENT_QUOTES, 'UTF-8'); ?>"
                alt="<?php echo htmlspecialchars($foto['alt'], ENT_QUOTES, 'UTF-8'); ?>"
                loading="lazy">
@@ -45,8 +46,8 @@ $fotos = galeria_activa($conn);
     </div>
 
     <div class="galeria-cta">
-      <p><?php echo htmlspecialchars(contenido('galeria.cta', '¿Querés vivir esto en primera persona?', $conn), ENT_QUOTES, 'UTF-8'); ?></p>
-      <a href="inscripcion.php" class="nuestra-historia"><?php echo htmlspecialchars(contenido('galeria.cta_boton', 'Inscribite a un curso', $conn), ENT_QUOTES, 'UTF-8'); ?></a>
+      <p><?php cms_text('galeria.cta', '¿Querés vivir esto en primera persona?', $conn); ?></p>
+      <a href="inscripcion.php" class="nuestra-historia"><?php cms_text('galeria.cta_boton', 'Inscribite a un curso', $conn); ?></a>
     </div>
   </div>
 </section>

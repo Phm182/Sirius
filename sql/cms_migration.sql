@@ -102,6 +102,11 @@ INSERT IGNORE INTO `galeria_foto` (`id`, `archivo`, `titulo`, `alt`, `activo`, `
 INSERT IGNORE INTO `sitio_contenido` (`clave`, `valor`, `tipo`) VALUES
 ('site.logo', 'img/Logo Web.png', 'image'),
 ('site.fondo', 'img/velas_para_crucero.jpg', 'image'),
+('theme.primary', '#b91515', 'color'),
+('theme.secondary', '#09134e', 'color'),
+('theme.background', '#111111', 'color'),
+('theme.surface', '#0d1533', 'color'),
+('theme.text', '#f4f6fa', 'color'),
 ('inicio.presentacion_eyebrow', 'Sirius', 'text'),
 ('inicio.presentacion_boton', 'Nuestra historia', 'text'),
 ('inicio.cursos_titulo', 'Cursos', 'text'),

@@ -8,14 +8,13 @@
   </section>
 
   <nav class="menu menu--off" id="menu-mobile-panel" aria-label="Navegación móvil" aria-hidden="true">
-    <div><a href="quienes_somos.php"><?php echo htmlspecialchars(contenido('nav.quienes', '¿Quiénes somos?', $conn), ENT_QUOTES, 'UTF-8'); ?></a></div>
-    <div><a href="cursos.php"><?php echo htmlspecialchars(contenido('nav.cursos', 'Cursos', $conn), ENT_QUOTES, 'UTF-8'); ?></a></div>
-    <div><a href="inscripcion.php"><?php echo htmlspecialchars(contenido('nav.inscripcion', 'Inscripción', $conn), ENT_QUOTES, 'UTF-8'); ?></a></div>
-    <div><a href="index.php#mapa"><?php echo htmlspecialchars(contenido('nav.sede', 'Sede', $conn), ENT_QUOTES, 'UTF-8'); ?></a></div>
-    <div><a href="galeria.php"><?php echo htmlspecialchars(contenido('nav.galeria', 'Galería', $conn), ENT_QUOTES, 'UTF-8'); ?></a></div>
-    <!-- <div><a href="#">Noticias</a></div> -->
-    <div><a href="contacto.php"><?php echo htmlspecialchars(contenido('nav.contacto', 'Contacto', $conn), ENT_QUOTES, 'UTF-8'); ?></a></div>
-    <div><a href="admin/login.php"><i class="fas fa-user-shield" aria-hidden="true"></i> <?php echo htmlspecialchars(contenido('nav.admin', 'Administración', $conn), ENT_QUOTES, 'UTF-8'); ?></a></div>
+    <div><a href="quienes_somos.php"><?php cms_text('nav.quienes', '¿Quiénes somos?', $conn); ?></a></div>
+    <div><a href="cursos.php"><?php cms_text('nav.cursos', 'Cursos', $conn); ?></a></div>
+    <div><a href="inscripcion.php"><?php cms_text('nav.inscripcion', 'Inscripción', $conn); ?></a></div>
+    <div><a href="index.php#mapa"><?php cms_text('nav.sede', 'Sede', $conn); ?></a></div>
+    <div><a href="galeria.php"><?php cms_text('nav.galeria', 'Galería', $conn); ?></a></div>
+    <div><a href="contacto.php"><?php cms_text('nav.contacto', 'Contacto', $conn); ?></a></div>
+    <div><a href="admin/login.php"><i class="fas fa-user-shield" aria-hidden="true"></i> <?php cms_text('nav.admin', 'Administración', $conn); ?></a></div>
   </nav>
   
 </section>

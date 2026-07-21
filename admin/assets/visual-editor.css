@@ -1,0 +1,70 @@
+/* Estilos del editor visual inyectados solo en preview.php?edit=1 */
+
+body.cms-edit-mode {
+  cursor: default;
+}
+
+.cms-editable,
+.cms-spot {
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  text-transform: inherit;
+  text-decoration: inherit;
+  outline: 2px solid transparent;
+  outline-offset: 4px;
+  transition: outline-color .15s ease, box-shadow .15s ease;
+}
+
+.cms-editable:hover,
+.cms-editable:focus-within,
+.cms-spot:hover {
+  outline-color: var(--color-primary, rgb(185, 21, 21));
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-primary, #b91515) 18%, transparent);
+}
+
+/* Controles propios del editor: flotan sobre la vista sin alterar su layout. */
+.cms-editor-controls {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 10060;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: .65rem;
+  max-width: calc(100vw - 36px);
+}
+
+.cms-editor-add {
+  min-height: 44px;
+  padding: .7rem 1rem;
+  border: 1px solid rgba(255, 255, 255, .25);
+  border-radius: 999px;
+  background: var(--color-primary, #b91515);
+  color: #fff;
+  font: 700 .82rem/1 "Open Sans", sans-serif;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .42);
+  cursor: pointer;
+}
+
+.cms-editor-add:hover,
+.cms-editor-add:focus-visible {
+  filter: brightness(1.12);
+  transform: translateY(-1px);
+}
+
+/* En edición la foto abre sus propiedades, no el lightbox. */
+body.cms-edit-mode .galeria-item {
+  cursor: pointer;
+}
+
+@media (max-width: 520px) {
+  .cms-editor-controls {
+    right: 10px;
+    bottom: 10px;
+    max-width: calc(100vw - 20px);
+  }
+}

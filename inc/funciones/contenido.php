@@ -11,6 +11,11 @@ function sitio_contenido_defaults(): array
     return [
         'site.logo' => 'img/Logo Web.png',
         'site.fondo' => 'img/velas_para_crucero.jpg',
+        'theme.primary' => '#b91515',
+        'theme.secondary' => '#09134e',
+        'theme.background' => '#111111',
+        'theme.surface' => '#0d1533',
+        'theme.text' => '#f4f6fa',
         'nav.quienes' => '¿Quiénes somos?',
         'nav.cursos' => 'Cursos',
         'nav.inscripcion' => 'Inscripción',
@@ -184,6 +189,12 @@ function contenido_asset(string $clave, string $fallback, ?mysqli $db = null): s
     return $value;
 }
 
+function contenido_color(string $clave, string $fallback, ?mysqli $db = null): string
+{
+    $value = contenido($clave, $fallback, $db);
+    return preg_match('/^#[0-9a-fA-F]{6}$/', $value) ? strtolower($value) : $fallback;
+}
+
 function cursos_activos(?mysqli $db = null): array
 {
     static $cache = null;
@@ -234,4 +245,61 @@ function galeria_activa(?mysqli $db = null): array
     } catch (Throwable $exception) {
         return $cache = sitio_galeria_defaults();
     }
+}
+
+/** True cuando la página se renderiza dentro del editor visual. */
+function cms_edit_mode(): bool
+{
+    return defined('SIRIUS_PREVIEW') && !empty($GLOBALS['cms_edit_mode']);
+}
+
+/**
+ * Atributos data-* para marcar un elemento editable en el editor visual.
+ * No imprime nada en el sitio público normal.
+ */
+function cms_attrs(string $key, string $type = 'text', string $label = '', string $src = ''): string
+{
+    if (!cms_edit_mode()) {
+        return '';
+    }
+    $html = ' data-cms-key="' . htmlspecialchars($key, ENT_QUOTES, 'UTF-8') . '"'
+        . ' data-cms-type="' . htmlspecialchars($type, ENT_QUOTES, 'UTF-8') . '"';
+    if ($label !== '') {
+        $html .= ' data-cms-label="' . htmlspecialchars($label, ENT_QUOTES, 'UTF-8') . '"';
+    }
+    if ($src !== '') {
+        $html .= ' data-cms-src="' . htmlspecialchars($src, ENT_QUOTES, 'UTF-8') . '"';
+    }
+    return $html;
+}
+
+function cms_entity_attrs(string $entity, int|string $id, string $label = ''): string
+{
+    if (!cms_edit_mode()) {
+        return '';
+    }
+    $html = ' data-cms-entity="' . htmlspecialchars($entity, ENT_QUOTES, 'UTF-8') . '"'
+        . ' data-cms-id="' . htmlspecialchars((string) $id, ENT_QUOTES, 'UTF-8') . '"';
+    if ($label !== '') {
+        $html .= ' data-cms-label="' . htmlspecialchars($label, ENT_QUOTES, 'UTF-8') . '"';
+    }
+    return $html;
+}
+
+/**
+ * Imprime texto CMS escapado. En edición usa un elemento propio en vez de
+ * <span>: la hoja pública tiene reglas globales para span y modificaría
+ * tipografía/color solamente dentro del editor.
+ */
+function cms_text(string $key, string $fallback = '', ?mysqli $db = null, bool $multiline = false): void
+{
+    $raw = contenido($key, $fallback, $db);
+    $escaped = htmlspecialchars($raw, ENT_QUOTES, 'UTF-8');
+    $html = $multiline ? nl2br($escaped) : $escaped;
+    if (!cms_edit_mode()) {
+        echo $html;
+        return;
+    }
+    $type = $multiline ? 'textarea' : 'text';
+    echo '<cms-editable class="cms-spot"' . cms_attrs($key, $type) . '>' . $html . '</cms-editable>';
 }

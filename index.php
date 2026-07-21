@@ -14,9 +14,9 @@ $signupImage = contenido_asset('inicio.inscripcion_imagen', 'img/5.jpeg', $conn)
 <section class="hero-section">
   <div class="contenedor parallax">
     <div class="sirius">
-      <h1><?php echo htmlspecialchars(contenido('inicio.hero_titulo', 'SIRIUS', $conn), ENT_QUOTES, 'UTF-8'); ?></h1>
-      <p><?php echo htmlspecialchars(contenido('inicio.hero_subtitulo', 'Escuela Náutica', $conn), ENT_QUOTES, 'UTF-8'); ?></p>
-      <a href="inscripcion.php" class="hero-cta"><?php echo htmlspecialchars(contenido('inicio.hero_boton', 'Quiero navegar', $conn), ENT_QUOTES, 'UTF-8'); ?></a>
+      <h1><?php cms_text('inicio.hero_titulo', 'SIRIUS', $conn); ?></h1>
+      <p><?php cms_text('inicio.hero_subtitulo', 'Escuela Náutica', $conn); ?></p>
+      <a href="inscripcion.php" class="hero-cta"><?php cms_text('inicio.hero_boton', 'Quiero navegar', $conn); ?></a>
     </div>
   </div>
 </section>
@@ -24,37 +24,41 @@ $signupImage = contenido_asset('inicio.inscripcion_imagen', 'img/5.jpeg', $conn)
 <section>
   <div class="contenedor2">
     <div id="quienes_somos" class="nosotros-img ordenador">
-      <img src="<?php echo htmlspecialchars($aboutImage, ENT_QUOTES, 'UTF-8'); ?>" alt="Alumnos de Sirius en práctica de navegación">
+      <img src="<?php echo htmlspecialchars($aboutImage, ENT_QUOTES, 'UTF-8'); ?>"
+           alt="Alumnos de Sirius en práctica de navegación"
+           <?php echo cms_attrs('inicio.presentacion_imagen', 'image', 'Imagen de presentación', $aboutImage); ?>>
     </div>
 
     <div class="texto1 ordenador">
-      <p class="nombre"><span><?php echo htmlspecialchars(contenido('inicio.presentacion_eyebrow', 'Sirius', $conn), ENT_QUOTES, 'UTF-8'); ?></span></p>
-      <h3><?php echo htmlspecialchars(contenido('inicio.presentacion_titulo', 'Escuela de navegación', $conn), ENT_QUOTES, 'UTF-8'); ?></h3>
+      <p class="nombre"><span><?php cms_text('inicio.presentacion_eyebrow', 'Sirius', $conn); ?></span></p>
+      <h3><?php cms_text('inicio.presentacion_titulo', 'Escuela de navegación', $conn); ?></h3>
       <p class="nosotros">
-        <?php echo nl2br(htmlspecialchars(contenido('inicio.presentacion_texto', '', $conn), ENT_QUOTES, 'UTF-8')); ?>
+        <?php cms_text('inicio.presentacion_texto', '', $conn, true); ?>
       </p>
-      <a href="quienes_somos.php" class="nuestra-historia"><?php echo htmlspecialchars(contenido('inicio.presentacion_boton', 'Nuestra historia', $conn), ENT_QUOTES, 'UTF-8'); ?></a>
+      <a href="quienes_somos.php" class="nuestra-historia"><?php cms_text('inicio.presentacion_boton', 'Nuestra historia', $conn); ?></a>
     </div>
 
     <div id="quienes_somos2" class="texto1 mobile">
-      <p class="nombre"><span><?php echo htmlspecialchars(contenido('inicio.presentacion_eyebrow', 'Sirius', $conn), ENT_QUOTES, 'UTF-8'); ?></span></p>
-      <h3><?php echo htmlspecialchars(contenido('inicio.presentacion_titulo', 'Escuela de navegación', $conn), ENT_QUOTES, 'UTF-8'); ?></h3>
+      <p class="nombre"><span><?php cms_text('inicio.presentacion_eyebrow', 'Sirius', $conn); ?></span></p>
+      <h3><?php cms_text('inicio.presentacion_titulo', 'Escuela de navegación', $conn); ?></h3>
       <p class="nosotros">
-        <?php echo nl2br(htmlspecialchars(contenido('inicio.presentacion_texto', '', $conn), ENT_QUOTES, 'UTF-8')); ?>
+        <?php cms_text('inicio.presentacion_texto', '', $conn, true); ?>
       </p>
     </div>
     <div class="nosotros-img mobile">
-      <img src="<?php echo htmlspecialchars($aboutImage, ENT_QUOTES, 'UTF-8'); ?>" alt="Alumnos de Sirius en práctica de navegación">
+      <img src="<?php echo htmlspecialchars($aboutImage, ENT_QUOTES, 'UTF-8'); ?>"
+           alt="Alumnos de Sirius en práctica de navegación"
+           <?php echo cms_attrs('inicio.presentacion_imagen', 'image', 'Imagen de presentación', $aboutImage); ?>>
     </div>
   </div>
   <div class="btn-nuestra-historia2">
-    <a href="quienes_somos.php" class="nuestra-historia2"><?php echo htmlspecialchars(contenido('inicio.presentacion_boton', 'Nuestra historia', $conn), ENT_QUOTES, 'UTF-8'); ?></a>
+    <a href="quienes_somos.php" class="nuestra-historia2"><?php cms_text('inicio.presentacion_boton', 'Nuestra historia', $conn); ?></a>
   </div>
 </section>
 
 <section class="section-cursos">
   <div id="cursos" class="cursos">
-    <h2><?php echo htmlspecialchars(contenido('inicio.cursos_titulo', 'Cursos', $conn), ENT_QUOTES, 'UTF-8'); ?></h2>
+    <h2><?php cms_text('inicio.cursos_titulo', 'Cursos', $conn); ?></h2>
     <p class="cursos-swipe-hint" aria-hidden="true">
       <i class="fas fa-hand-pointer"></i>
       Deslizá para ver todos los cursos
@@ -62,7 +66,7 @@ $signupImage = contenido_asset('inicio.inscripcion_imagen', 'img/5.jpeg', $conn)
     </p>
     <div class="contenedor-cursos" data-course-slider role="region" aria-label="Cursos disponibles" tabindex="0">
       <?php foreach ($courses as $course): ?>
-        <div class="curso">
+        <div class="curso" <?php echo ((int) $course['id'] > 0) ? cms_entity_attrs('curso', (int) $course['id'], (string) $course['nombre']) : ''; ?>>
           <img src="<?php echo htmlspecialchars($course['imagen'], ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars($course['imagen_alt'], ENT_QUOTES, 'UTF-8'); ?>">
           <h3><?php echo htmlspecialchars($course['nombre'], ENT_QUOTES, 'UTF-8'); ?></h3>
           <p>
@@ -82,47 +86,55 @@ $signupImage = contenido_asset('inicio.inscripcion_imagen', 'img/5.jpeg', $conn)
 <section>
   <div id="inscripcion" class="contenedor2">
     <div class="texto1 ordenador">
-      <p class="nombre"><span><?php echo htmlspecialchars(contenido('inicio.inscripcion_eyebrow', '¡Te esperamos a bordo!', $conn), ENT_QUOTES, 'UTF-8'); ?></span></p>
-      <h3><?php echo htmlspecialchars(contenido('inicio.inscripcion_titulo', 'Inscripción', $conn), ENT_QUOTES, 'UTF-8'); ?></h3>
+      <p class="nombre"><span><?php cms_text('inicio.inscripcion_eyebrow', '¡Te esperamos a bordo!', $conn); ?></span></p>
+      <h3><?php cms_text('inicio.inscripcion_titulo', 'Inscripción', $conn); ?></h3>
       <p class="nosotros ordenador">
-        <?php echo nl2br(htmlspecialchars(contenido('inicio.inscripcion_texto', '', $conn), ENT_QUOTES, 'UTF-8')); ?>
+        <?php cms_text('inicio.inscripcion_texto', '', $conn, true); ?>
       </p>
-      <a href="inscripcion.php" class="nuestra-historia"><?php echo htmlspecialchars(contenido('inicio.inscripcion_boton', 'Inscribirme', $conn), ENT_QUOTES, 'UTF-8'); ?></a>
+      <a href="inscripcion.php" class="nuestra-historia"><?php cms_text('inicio.inscripcion_boton', 'Inscribirme', $conn); ?></a>
     </div>
 
     <div class="nosotros-img ordenador">
-      <img src="<?php echo htmlspecialchars($signupImage, ENT_QUOTES, 'UTF-8'); ?>" alt="Práctica a bordo en Sirius" class="inscripción-img">
+      <img src="<?php echo htmlspecialchars($signupImage, ENT_QUOTES, 'UTF-8'); ?>"
+           alt="Práctica a bordo en Sirius"
+           class="inscripción-img"
+           <?php echo cms_attrs('inicio.inscripcion_imagen', 'image', 'Imagen de inscripción', $signupImage); ?>>
     </div>
   </div>
 
   <div class="contenedor2">
     <div class="texto1 mobile">
-      <p class="nombre"><span><?php echo htmlspecialchars(contenido('inicio.inscripcion_eyebrow', '¡Te esperamos a bordo!', $conn), ENT_QUOTES, 'UTF-8'); ?></span></p>
+      <p class="nombre"><span><?php cms_text('inicio.inscripcion_eyebrow', '¡Te esperamos a bordo!', $conn); ?></span></p>
     </div>
     <div class="nosotros-img2 mobile">
-      <img src="<?php echo htmlspecialchars($signupImage, ENT_QUOTES, 'UTF-8'); ?>" alt="Práctica a bordo en Sirius" class="inscripción-img">
+      <img src="<?php echo htmlspecialchars($signupImage, ENT_QUOTES, 'UTF-8'); ?>"
+           alt="Práctica a bordo en Sirius"
+           class="inscripción-img"
+           <?php echo cms_attrs('inicio.inscripcion_imagen', 'image', 'Imagen de inscripción', $signupImage); ?>>
     </div>
     <div class="texto1 mobile">
-      <h3><?php echo htmlspecialchars(contenido('inicio.inscripcion_titulo', 'Inscripción', $conn), ENT_QUOTES, 'UTF-8'); ?></h3>
+      <h3><?php cms_text('inicio.inscripcion_titulo', 'Inscripción', $conn); ?></h3>
       <p class="nosotros">
-        <?php echo nl2br(htmlspecialchars(contenido('inicio.inscripcion_texto', '', $conn), ENT_QUOTES, 'UTF-8')); ?>
+        <?php cms_text('inicio.inscripcion_texto', '', $conn, true); ?>
       </p>
-      <a href="inscripcion.php" class="nuestra-historia"><?php echo htmlspecialchars(contenido('inicio.inscripcion_boton', 'Inscribirme', $conn), ENT_QUOTES, 'UTF-8'); ?></a>
+      <a href="inscripcion.php" class="nuestra-historia"><?php cms_text('inicio.inscripcion_boton', 'Inscribirme', $conn); ?></a>
     </div>
   </div>
   <div class="btn-nuestra-historia2">
-    <a href="inscripcion.php" class="nuestra-historia2"><?php echo htmlspecialchars(contenido('inicio.inscripcion_boton', 'Inscribirme', $conn), ENT_QUOTES, 'UTF-8'); ?></a>
+    <a href="inscripcion.php" class="nuestra-historia2"><?php cms_text('inicio.inscripcion_boton', 'Inscribirme', $conn); ?></a>
   </div>
 </section>
 
 <section class="mapa-section" id="mapa-section">
   <div class="mapa-intro">
-    <p class="nombre"><span><?php echo htmlspecialchars(contenido('inicio.sede_eyebrow', 'Sede', $conn), ENT_QUOTES, 'UTF-8'); ?></span></p>
-    <h3><?php echo htmlspecialchars(contenido('inicio.sede_titulo', 'Costanera Norte', $conn), ENT_QUOTES, 'UTF-8'); ?></h3>
-    <p><?php echo nl2br(htmlspecialchars(contenido('inicio.sede_texto', '', $conn), ENT_QUOTES, 'UTF-8')); ?></p>
-    <a href="contacto.php" class="nuestra-historia"><?php echo htmlspecialchars(contenido('inicio.sede_boton', 'Consultar cómo llegar', $conn), ENT_QUOTES, 'UTF-8'); ?></a>
+    <p class="nombre"><span><?php cms_text('inicio.sede_eyebrow', 'Sede', $conn); ?></span></p>
+    <h3><?php cms_text('inicio.sede_titulo', 'Costanera Norte', $conn); ?></h3>
+    <p><?php cms_text('inicio.sede_texto', '', $conn, true); ?></p>
+    <a href="contacto.php" class="nuestra-historia"><?php cms_text('inicio.sede_boton', 'Consultar cómo llegar', $conn); ?></a>
   </div>
-  <div id="mapa" class="mapa" role="region" aria-label="Mapa de la sede Sirius" data-zoom="<?php echo (int) contenido('inicio.mapa_zoom', '15', $conn); ?>"></div>
+  <div id="mapa" class="mapa" role="region" aria-label="Mapa de la sede Sirius"
+       data-zoom="<?php echo (int) contenido('inicio.mapa_zoom', '15', $conn); ?>"
+       <?php echo cms_attrs('inicio.mapa_zoom', 'number', 'Zoom del mapa'); ?>></div>
 </section>
 
 <?php include 'inc/templates/footer.php'; ?>

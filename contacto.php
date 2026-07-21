@@ -9,9 +9,9 @@
 <section class="page-offset page-surface">
   <div class="section_galeria">
     <div class="texto1">
-      <p class="nombre"><span><?php echo htmlspecialchars(contenido('contacto.eyebrow', 'Sirius', $conn), ENT_QUOTES, 'UTF-8'); ?></span></p>
-      <h3><?php echo htmlspecialchars(contenido('contacto.titulo', 'Contactanos', $conn), ENT_QUOTES, 'UTF-8'); ?></h3>
-      <p class="contacto-lead"><?php echo nl2br(htmlspecialchars(contenido('contacto.intro', '', $conn), ENT_QUOTES, 'UTF-8')); ?></p>
+      <p class="nombre"><span><?php cms_text('contacto.eyebrow', 'Sirius', $conn); ?></span></p>
+      <h3><?php cms_text('contacto.titulo', 'Contactanos', $conn); ?></h3>
+      <p class="contacto-lead"><?php cms_text('contacto.intro', '', $conn, true); ?></p>
     </div>
 
     <hr>

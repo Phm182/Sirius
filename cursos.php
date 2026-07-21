@@ -12,9 +12,9 @@ $courses = cursos_activos($conn);
 <section class="section-cursos page-offset">
   <div id="cursos" class="cursos pagina-cursos">
     <div class="cursos-titulo">
-      <p class="nombre"><span><?php echo htmlspecialchars(contenido('cursos.eyebrow', 'Sirius', $conn), ENT_QUOTES, 'UTF-8'); ?></span></p>
-      <h2><?php echo htmlspecialchars(contenido('cursos.titulo', 'Cursos', $conn), ENT_QUOTES, 'UTF-8'); ?></h2>
-      <p class="cursos-intro"><?php echo nl2br(htmlspecialchars(contenido('cursos.intro', '', $conn), ENT_QUOTES, 'UTF-8')); ?></p>
+      <p class="nombre"><span><?php cms_text('cursos.eyebrow', 'Sirius', $conn); ?></span></p>
+      <h2><?php cms_text('cursos.titulo', 'Cursos', $conn); ?></h2>
+      <p class="cursos-intro"><?php cms_text('cursos.intro', '', $conn, true); ?></p>
     </div>
     <p class="cursos-swipe-hint" aria-hidden="true">
       <i class="fas fa-hand-pointer"></i>
@@ -23,7 +23,7 @@ $courses = cursos_activos($conn);
     </p>
     <div class="contenedor-cursos" data-course-slider role="region" aria-label="Cursos disponibles" tabindex="0">
       <?php foreach ($courses as $course): ?>
-        <div class="curso">
+        <div class="curso" <?php echo ((int) $course['id'] > 0) ? cms_entity_attrs('curso', (int) $course['id'], (string) $course['nombre']) : ''; ?>>
           <img src="<?php echo htmlspecialchars($course['imagen'], ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars($course['imagen_alt'], ENT_QUOTES, 'UTF-8'); ?>">
           <h3><?php echo htmlspecialchars($course['nombre'], ENT_QUOTES, 'UTF-8'); ?></h3>
           <p><?php echo nl2br(htmlspecialchars($course['resumen'], ENT_QUOTES, 'UTF-8')); ?></p>

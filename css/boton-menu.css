@@ -13,7 +13,7 @@ section.wrapper {
   .menu {
     font-size:1.5em;
     font-family: 'Roboto', sans-serif;
-    color: rgb(185, 21, 21);
+    color: var(--color-primary, #b91515);
   }
   
   .menu div {
@@ -23,7 +23,7 @@ section.wrapper {
   }
   .menu a {
     text-decoration: none;
-    color: rgb(185, 21, 21);
+    color: var(--color-primary, #b91515);
     background-image: linear-gradient(currentColor, currentColor);
     background-position: 50% 100%;
     background-repeat: no-repeat;
@@ -67,14 +67,14 @@ section.wrapper {
     border-bottom-color: rgba(255, 255, 255, .18);
   }
   .menu--off a {
-    color: rgb(185, 21, 21);
+    color: var(--color-primary, #b91515);
     font-weight: 600;
     text-shadow: 0 1px 8px rgba(0, 0, 0, .9);
   }
   .menu--off a:hover,
   .menu--off a:focus-visible {
     color: #fff;
-    background-image: linear-gradient(rgb(185, 21, 21), rgb(185, 21, 21));
+    background-image: linear-gradient(var(--color-primary, #b91515), var(--color-primary, #b91515));
   }
   .menu--on {
     left: 0;

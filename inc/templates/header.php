@@ -13,6 +13,11 @@ require_once __DIR__ . '/../funciones/contenido.php';
 $siteTitle = contenido('seo.titulo', 'Sirius · Escuela Náutica', $conn);
 $siteDescription = contenido('seo.descripcion', 'Cursos de navegación en Buenos Aires con práctica real a bordo.', $conn);
 $siteBackground = contenido_asset('site.fondo', 'img/velas_para_crucero.jpg', $conn);
+$themePrimary = contenido_color('theme.primary', '#b91515', $conn);
+$themeSecondary = contenido_color('theme.secondary', '#09134e', $conn);
+$themeBackground = contenido_color('theme.background', '#111111', $conn);
+$themeSurface = contenido_color('theme.surface', '#0d1533', $conn);
+$themeText = contenido_color('theme.text', '#f4f6fa', $conn);
 
 /**
  * El fondo se inyecta como variable CSS. Dentro de una hoja de estilos, un
@@ -71,4 +76,24 @@ if (!function_exists('sirius_asset')) {
   <link rel="stylesheet" href="<?php echo htmlspecialchars(sirius_asset('css/lightbox.css'), ENT_QUOTES, 'UTF-8'); ?>">
   <link rel="stylesheet" href="<?php echo htmlspecialchars(sirius_asset('css/style.css'), ENT_QUOTES, 'UTF-8'); ?>">
 </head>
-<body style="--site-bg-image: url('<?php echo htmlspecialchars($siteBackground, ENT_QUOTES, 'UTF-8'); ?>')">
+<body
+  class="<?php echo function_exists('cms_edit_mode') && cms_edit_mode() ? 'cms-edit-mode' : ''; ?>"
+  style="
+    --site-bg-image: url('<?php echo htmlspecialchars($siteBackground, ENT_QUOTES, 'UTF-8'); ?>');
+    --color-primary: <?php echo htmlspecialchars($themePrimary, ENT_QUOTES, 'UTF-8'); ?>;
+    --color-secondary: <?php echo htmlspecialchars($themeSecondary, ENT_QUOTES, 'UTF-8'); ?>;
+    --color-background: <?php echo htmlspecialchars($themeBackground, ENT_QUOTES, 'UTF-8'); ?>;
+    --color-surface: <?php echo htmlspecialchars($themeSurface, ENT_QUOTES, 'UTF-8'); ?>;
+    --color-text: <?php echo htmlspecialchars($themeText, ENT_QUOTES, 'UTF-8'); ?>;
+  "
+  <?php
+    if (function_exists('cms_edit_mode') && cms_edit_mode()) {
+        echo cms_attrs(
+            'site.fondo',
+            'image',
+            'Fondo del sitio',
+            contenido_asset('site.fondo', 'img/velas_para_crucero.jpg', $conn)
+        );
+    }
+  ?>
+>
