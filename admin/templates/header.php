@@ -10,6 +10,8 @@ $flash = admin_take_flash();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex,nofollow">
   <title><?php echo admin_h($pageTitle); ?> · Sirius Admin</title>
+  <link rel="icon" type="image/png" href="../img/Logo%20Web.png">
+  <link rel="apple-touch-icon" href="../img/Logo%20Web.png">
   <link rel="stylesheet" href="assets/admin.css">
 </head>
 <body>
